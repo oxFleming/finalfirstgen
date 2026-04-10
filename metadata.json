@@ -1,0 +1,5 @@
+{
+  "name": "Animation & WebGL Sandbox",
+  "description": "A sandbox for GSAP, WebGL, and various text/color animation libraries.",
+  "requestFramePermissions": []
+}
