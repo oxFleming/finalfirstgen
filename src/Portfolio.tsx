@@ -77,7 +77,15 @@ export default function Portfolio() {
         { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
       );
     });
-    return () => ctx.revert();
+
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+      ctx.revert();
+    };
   }, [activeFilter]);
 
   return (

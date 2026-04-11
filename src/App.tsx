@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, ArrowRight, Play, X } from 'lucide-react';
+import { Menu, ArrowRight, Play, X, MessageCircle } from 'lucide-react';
 import { Highlight, Button, SectionHeader, AccordionItem } from './components/ui';
 import Services from './Services';
 import Portfolio from './Portfolio';
@@ -11,6 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
+  const [activeReachAccordion, setActiveReachAccordion] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,6 +77,31 @@ function App() {
             }
           });
         }
+
+        // Featured Projects Parallax & Active State
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card) => {
+          const img = card.querySelector('.project-image');
+          if (img) {
+            gsap.to(img, {
+              yPercent: 20,
+              ease: "none",
+              scrollTrigger: {
+                trigger: card,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              }
+            });
+          }
+
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top center",
+            end: "bottom center",
+            toggleClass: "is-active",
+          });
+        });
       }
 
       // Fade up elements
@@ -88,7 +114,15 @@ function App() {
       });
     });
 
-    return () => ctx.revert();
+    // Refresh ScrollTrigger after a short delay to account for mobile layout shifts and image loads
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+      ctx.revert();
+    };
   }, [currentPage]);
 
   return (
@@ -124,8 +158,8 @@ function App() {
             We build<br />around <span className="italic font-light">you</span>
           </h1>
           <p className="text-xl text-white/90 mb-10 font-light">Client Focused. Community First.</p>
-          <button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }} className="bg-white/90 backdrop-blur-sm text-brand-dark rounded-full px-8 py-4 font-medium flex items-center gap-3 hover:bg-white transition-colors">
-            See Our Work <ArrowRight className="w-5 h-5 text-brand-primary" />
+          <button onClick={() => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }} className="bg-white/90 backdrop-blur-sm text-brand-dark rounded-full px-8 py-4 font-medium flex items-center gap-3 hover:bg-white transition-colors">
+            Contact Us Now <ArrowRight className="w-5 h-5 text-brand-primary" />
           </button>
         </div>
 
@@ -176,81 +210,7 @@ function App() {
         </div>
       </section>
 
-      {/* Our Sectors */}
-      <section className="px-6 py-24 border-t border-gray-300 mt-12">
-        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR SECTORS</h3>
-        <div className="flex flex-col gap-4">
-          {['Custom Residential Construction', 'Home Renovation & Modernization', 'Building Development', 'Construction Materials', 'International Development'].map((sector, i) => (
-            <button key={i} className="group relative w-full text-left border border-gray-300 rounded-full px-8 py-5 flex justify-between items-center overflow-hidden hover:border-brand-dark transition-colors fade-up">
-              <span className="text-xl md:text-2xl font-light relative z-10 font-heading">{sector}</span>
-              <ArrowRight className="w-6 h-6 relative z-10" />
-              {/* Hover image effect simulation */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 z-0">
-                <img src={`https://picsum.photos/seed/${sector}/800/200`} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              </div>
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Trusted By - Infinite Marquee */}
-      <section className="py-16 bg-white overflow-hidden border-y border-gray-200">
-        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10 text-center">Trusted by:</h3>
-        <div className="flex w-[200%] animate-marquee opacity-60 hover:opacity-100 transition-opacity duration-500">
-          {[1, 2].map((set) => (
-            <div key={set} className="flex justify-around items-center w-1/2 px-4 gap-16">
-              <div className="font-bold text-3xl font-heading tracking-tighter">LUMINA</div>
-              <div className="font-serif italic text-2xl">Oak & Stone</div>
-              <div className="font-bold text-2xl tracking-widest">VERTEX</div>
-              <div className="font-light text-3xl font-heading">NEXUS</div>
-              <div className="font-bold text-2xl">ELEVATE</div>
-              <div className="font-serif text-2xl">Crestview</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Featured Projects - Stacking Cards */}
-      <section className="px-6 py-24 bg-brand-gray">
-        <h2 className="text-4xl md:text-5xl font-light text-brand-primary mb-6 fade-up font-heading">Featured Projects</h2>
-        <p className="text-lg text-gray-700 leading-relaxed mb-10 fade-up max-w-2xl">
-          Every distinct home in our diverse portfolio represents one uncommon commitment: Our determination to make your vision, experience and satisfaction the top priority. When you put people first, results follow—and these projects speak for themselves.
-        </p>
-        <div className="mb-16 fade-up">
-          <Button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>View Portfolio</Button>
-        </div>
-
-        <div className="relative mt-16 pb-32">
-          {[
-            { title: 'The Horizon Villa', loc: 'Chicago, IL', tag: 'Luxury Residential', img: 'home-proj1' },
-            { title: 'Eco-Modern Retreat', loc: 'Houston, TX', tag: 'Sustainable', img: 'home-proj2' },
-            { title: 'The Glass Pavilion', loc: 'Lekki, Lagos', tag: 'Architecture', img: 'home-proj3' },
-            { title: 'Heritage Estate', loc: 'Chicago, IL', tag: 'Renovation', img: 'home-proj4' }
-          ].map((proj, i) => (
-            <div 
-              key={i} 
-              className="sticky w-full bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100 group cursor-pointer"
-              style={{ top: `calc(15vh + ${i * 30}px)`, marginBottom: '10vh' }}
-            >
-              <div className="p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center">
-                <div className="w-full md:w-1/3">
-                  <h3 className="text-3xl md:text-4xl font-heading font-medium mb-4 group-hover:text-brand-primary transition-colors">{proj.title}</h3>
-                  <p className="text-gray-500 mb-6 text-lg">{proj.loc}</p>
-                  <span className="inline-block border border-brand-primary text-brand-primary rounded-full px-4 py-2 text-sm font-medium">{proj.tag}</span>
-                  <div className="mt-8 flex items-center gap-2 text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-4 group-hover:translate-x-0 duration-300 font-medium">
-                    View Project <ArrowRight className="w-5 h-5" />
-                  </div>
-                </div>
-                <div className="w-full md:w-2/3 aspect-[16/9] overflow-hidden rounded-xl">
-                  <img src={`https://picsum.photos/seed/${proj.img}/1000/600`} alt={proj.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Services */}
+      {/* Services (Moved Up) */}
       <section className="px-6 py-24 bg-white">
         <SectionHeader 
           subtitle="SERVICES" 
@@ -288,6 +248,94 @@ function App() {
         </div>
       </section>
 
+      {/* Trusted By - Infinite Marquee */}
+      <section className="py-16 bg-white overflow-hidden border-y border-gray-200">
+        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10 text-center">Trusted by:</h3>
+        <div className="flex w-[200%] animate-marquee opacity-60 hover:opacity-100 transition-opacity duration-500">
+          {[1, 2].map((set) => (
+            <div key={set} className="flex justify-around items-center w-1/2 px-4 gap-16">
+              <div className="font-bold text-3xl font-heading tracking-tighter">LUMINA</div>
+              <div className="font-serif italic text-2xl">Oak & Stone</div>
+              <div className="font-bold text-2xl tracking-widest">VERTEX</div>
+              <div className="font-light text-3xl font-heading">NEXUS</div>
+              <div className="font-bold text-2xl">ELEVATE</div>
+              <div className="font-serif text-2xl">Crestview</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="px-6 py-24 bg-brand-gray">
+        <h2 className="text-4xl md:text-5xl font-light text-brand-primary mb-6 fade-up font-heading">Featured Projects</h2>
+        <p className="text-lg text-gray-700 leading-relaxed mb-10 fade-up max-w-2xl">
+          Every distinct home in our diverse portfolio represents one uncommon commitment: Our determination to make your vision, experience and satisfaction the top priority. When you put people first, results follow—and these projects speak for themselves.
+        </p>
+        <div className="mb-16 fade-up">
+          <Button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>View Portfolio</Button>
+        </div>
+
+        <div className="relative mt-16 pb-32">
+          {[
+            { title: 'The Horizon Villa', loc: 'Chicago, IL', tag: 'Luxury Residential', img: 'home-proj1' },
+            { title: 'Eco-Modern Retreat', loc: 'Houston, TX', tag: 'Sustainable', img: 'home-proj2' },
+            { title: 'The Glass Pavilion', loc: 'Lekki, Lagos', tag: 'Architecture', img: 'home-proj3' },
+            { title: 'Heritage Estate', loc: 'Chicago, IL', tag: 'Renovation', img: 'home-proj4' }
+          ].map((proj, i) => (
+            <div 
+              key={i} 
+              className="project-card sticky w-full bg-brand-gray group cursor-pointer"
+              style={{ top: '100px' }}
+              onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}
+            >
+              <div className="border-t border-gray-300 pt-8 pb-16">
+                <h3 className="text-3xl md:text-4xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
+                <p className="text-gray-600 mb-4 text-lg">{proj.loc}</p>
+                <div className="flex justify-between items-center mb-8">
+                  <span className="inline-block border border-gray-300 bg-gray-50 text-gray-500 text-sm px-3 py-1 rounded-sm uppercase tracking-wider">{proj.tag}</span>
+                  <div className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors duration-300 group-[.is-active]:border-[#D32F2F] group-[.is-active]:text-[#D32F2F] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F]">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+                </div>
+                <div className="w-full aspect-[16/9] overflow-hidden relative">
+                  <img 
+                    src={`https://picsum.photos/seed/${proj.img}/1000/600`} 
+                    alt={proj.title} 
+                    className="project-image absolute top-[-15%] left-0 w-full h-[130%] object-cover" 
+                    referrerPolicy="no-referrer" 
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Our Reach (Moved Down) */}
+      <section className="px-6 py-24 bg-white border-t border-gray-300 mt-12">
+        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR REACH</h3>
+        <div className="border-t border-gray-300 fade-up">
+          <AccordionItem 
+            title="USA" 
+            content="Headquartered in Chicago, Illinois, we deliver premium residential construction, renovation, and development projects across the United States, adhering to the highest standards of quality and modern lifestyle demands."
+            isOpen={activeReachAccordion === 0}
+            onClick={() => setActiveReachAccordion(activeReachAccordion === 0 ? null : 0)}
+          />
+          <AccordionItem 
+            title="Europe" 
+            content="Our European operations focus on strategic real estate initiatives, bringing our expertise in design, construction management, and premium finishing products to select international markets."
+            isOpen={activeReachAccordion === 1}
+            onClick={() => setActiveReachAccordion(activeReachAccordion === 1 ? null : 1)}
+          />
+          <AccordionItem 
+            title="Africa" 
+            content="We support international real estate development across Africa, leveraging the broader FGIP ecosystem to provide strategic expertise in residential development planning and infrastructure."
+            isOpen={activeReachAccordion === 2}
+            onClick={() => setActiveReachAccordion(activeReachAccordion === 2 ? null : 2)}
+          />
+        </div>
+      </section>
+
       {/* Large Image */}
       <section className="w-full h-[70vh]">
         <img src="https://picsum.photos/seed/home-crane/1200/800" alt="Construction site" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
@@ -317,11 +365,11 @@ function App() {
       {/* Testimonial */}
       <section className="px-6 py-32 bg-gray-200 text-center">
         <p className="text-3xl md:text-4xl font-light text-brand-primary leading-tight mb-10 fade-up font-heading">
-          "First Generation Homes was an outstanding partner in all phases of our construction projects. They worked diligently to get the best price for our money without sacrificing quality."
+          "We truly appreciate your commitment on this project. I wanted to acknowledge the satisfaction on our remodel. I must give a 100% satisfied mark as you not only finished the job early and under budget, but with great sub-contractors and excellent workmanship. The job was done very efficiently and timely."
         </p>
         <div className="fade-up">
-          <p className="font-medium text-lg">Kathy Hipp</p>
-          <p className="text-gray-600">Anderson School District 3<br/>Superintendent</p>
+          <p className="font-medium text-lg">Raja Bilal</p>
+          <p className="text-gray-600">CEO Focus with Raja</p>
         </div>
       </section>
 
@@ -373,10 +421,6 @@ function App() {
 
       {/* Footer */}
       <footer className="px-6 py-16 bg-brand-gray">
-        <div className="mb-12 opacity-50">
-          <img src="https://picsum.photos/seed/home-sketch/800/400" alt="Building sketch" className="w-full max-w-md mx-auto object-contain mix-blend-multiply" referrerPolicy="no-referrer" />
-        </div>
-        
         <div className="grid grid-cols-2 gap-y-8 gap-x-4 mb-16 text-sm">
           <div>
             <p className="font-medium mb-1">US Operations:</p>
@@ -386,29 +430,30 @@ function App() {
             <p className="font-medium mb-1">International:</p>
             <p className="text-gray-600">Lagos, Nigeria</p>
           </div>
-          <div className="col-span-2">
-            <a href="mailto:info@firstgenhomes.com" className="text-brand-primary font-medium text-lg">info@firstgenhomes.com</a>
+          <div className="col-span-2 flex flex-col items-start gap-4 mt-2">
+            <a href="mailto:matthew.kalesanwo@fgipgroup.net" className="text-brand-primary font-medium text-lg break-all">matthew.kalesanwo@fgipgroup.net</a>
+            <a 
+              href="https://wa.me/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-[#25D366] text-white px-6 py-3 rounded-md font-medium hover:bg-[#20bd5a] transition-colors shadow-sm"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Send us a dm on Whatsapp
+            </a>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-y-4 text-lg font-light mb-16">
-          <a href="#" className="hover:text-brand-primary transition-colors">Portfolio</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">About</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Amenities</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Services</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Industrial</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Blog</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Education</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Careers</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Mixed-Use/Multi Family</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Contact</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Municipality + Community</a>
+          <button onClick={() => { setCurrentPage('home'); window.scrollTo(0,0); }} className="text-left hover:text-brand-primary transition-colors">Home</button>
+          <button onClick={() => { setCurrentPage('services'); window.scrollTo(0,0); }} className="text-left hover:text-brand-primary transition-colors">Services</button>
+          <button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }} className="text-left hover:text-brand-primary transition-colors">Portfolio</button>
+          <button onClick={() => { setCurrentPage('team'); window.scrollTo(0,0); }} className="text-left hover:text-brand-primary transition-colors">Team</button>
         </div>
 
         <div className="grid grid-cols-2 gap-y-4 text-lg font-light border-t border-b border-gray-300 py-8 mb-12">
-          <a href="#" className="hover:text-brand-primary transition-colors">Facebook</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-brand-primary transition-colors">Instagram</a>
+          <a href="https://www.linkedin.com/company/first-generation-homes-llc/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors">LinkedIn</a>
+          <a href="https://www.instagram.com/firstgenerationhomesllc/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors">Instagram</a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm mb-16">
@@ -453,6 +498,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Floating WhatsApp Button */}
+      <a 
+        href="https://wa.me/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
+        aria-label="Contact us on WhatsApp"
+      >
+        <MessageCircle className="w-7 h-7" />
+      </a>
     </div>
   );
 }

@@ -14,7 +14,15 @@ export default function Services() {
         );
       });
     });
-    return () => ctx.revert();
+
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+      ctx.revert();
+    };
   }, []);
 
   const ServiceSection = ({ id, title, quote, text, highlight, listTitle, list, img }: any) => (
@@ -141,10 +149,10 @@ export default function Services() {
       {/* Testimonial */}
       <div className="pt-32 pb-12 text-center services-fade-up">
         <p className="text-2xl md:text-4xl font-light text-brand-primary leading-tight mb-10 font-heading">
-          "What you can expect from First Generation Homes is a streamlined, honest process built upon open communication and thorough market/industry knowledge that dramatically simplifies the construction process."
+          "Our experience with First Generation Homes LLC, was marked by high integrity, good quality, and high value work. Because of the cooperation and sensitivity of First Generation Homes LLC, we were able to continue our entire renovation during the construction period. First Generation Homes LLC, began our renovation by providing a very competitive bid; demonstrating a willingness to work through options; and accepting a challenging schedule."
         </p>
-        <p className="font-medium text-lg">Phillip Addington</p>
-        <p className="text-gray-600">Clemson University, Project Manager</p>
+        <p className="font-medium text-lg">Julius A</p>
+        <p className="text-gray-600">CEO Leadway Pharmacy</p>
       </div>
     </div>
   );

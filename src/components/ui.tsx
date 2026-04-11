@@ -61,7 +61,15 @@ export const SectionHeader = ({ subtitle, title }: { subtitle: string, title: Re
         { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ref.current, start: "top 85%" } }
       );
     });
-    return () => ctx.revert();
+
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+      ctx.revert();
+    };
   }, []);
 
   return (

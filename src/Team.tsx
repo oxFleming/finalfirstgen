@@ -25,7 +25,15 @@ export default function Team() {
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out" }
       );
     });
-    return () => ctx.revert();
+
+    const timeoutId = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+      ctx.revert();
+    };
   }, []);
 
   return (
