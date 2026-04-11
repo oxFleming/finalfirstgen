@@ -13,21 +13,24 @@ export const Highlight = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (!el.current || !bg.current || !textRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el.current,
-        start: "top 85%",
-      }
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el.current,
+          start: "top 85%",
+        }
+      });
+
+      tl.fromTo(bg.current,
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.5, ease: "power3.inOut", transformOrigin: "left center" }
+      ).to(textRef.current, {
+        color: 'white',
+        duration: 0.1
+      }, "-=0.25");
     });
 
-    tl.fromTo(bg.current,
-      { scaleX: 0 },
-      { scaleX: 1, duration: 0.5, ease: "power3.inOut", transformOrigin: "left center" }
-    ).to(textRef.current, {
-      color: 'white',
-      duration: 0.1
-    }, "-=0.25");
-
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -52,10 +55,13 @@ export const SectionHeader = ({ subtitle, title }: { subtitle: string, title: Re
 
   useEffect(() => {
     if (!ref.current) return;
-    gsap.fromTo(ref.current.children, 
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ref.current, start: "top 85%" } }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo(ref.current!.children, 
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", scrollTrigger: { trigger: ref.current, start: "top 85%" } }
+      );
+    });
+    return () => ctx.revert();
   }, []);
 
   return (

@@ -71,10 +71,13 @@ export default function Portfolio() {
   const remainingProjects = filteredProjects.slice(1);
 
   useEffect(() => {
-    gsap.fromTo('.portfolio-fade-up', 
-      { y: 20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.portfolio-fade-up', 
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" }
+      );
+    });
+    return () => ctx.revert();
   }, [activeFilter]);
 
   return (

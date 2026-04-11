@@ -2,20 +2,30 @@ import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
 const teamMembers = [
-  { name: "John Doe", role: "Chief Executive Officer", img: "exec1" },
-  { name: "Jane Smith", role: "Chief Operations Officer", img: "exec2" },
-  { name: "Michael Johnson", role: "Chief Financial Officer", img: "exec3" },
-  { name: "Sarah Williams", role: "VP of Construction", img: "exec4" },
-  { name: "David Brown", role: "Head of Architecture", img: "exec5" },
-  { name: "Emily Davis", role: "Director of Sustainability", img: "exec6" },
+  { name: "Remy Okunbena", role: "Managing Director, First Generation Homes LLC", img: "remy" },
+  { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
+  { name: "Uju Amazu", role: "Chief Operating Officer", img: "uju" },
+  { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
+  { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" },
+  { name: "Taplong Lucy James", role: "Legal/Compliance Officer", img: "lucy" },
+  { name: "Engr. Olaoye Sunday Joel", role: "Engineering", img: "olaoye" },
+  { name: "Engr. Azeez Opeyemi", role: "Engineering", img: "azeez" },
+  { name: "Gbemi Adebayo", role: "Team Member", img: "gbemi" },
+  { name: "Tope Makinde", role: "Team Member", img: "tope" },
+  { name: "Adeoye Oluwamayokun Jude", role: "Team Member", img: "adeoye" },
+  { name: "Alade Abosede Mauyon", role: "Team Member", img: "alade" },
+  { name: "Omeri Titus", role: "Team Member", img: "omeri" },
 ];
 
 export default function Team() {
   useEffect(() => {
-    gsap.fromTo('.team-fade-up',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out" }
-    );
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.team-fade-up',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.out" }
+      );
+    });
+    return () => ctx.revert();
   }, []);
 
   return (

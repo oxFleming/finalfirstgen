@@ -20,6 +20,17 @@ function App() {
   const teamContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -30,57 +41,54 @@ function App() {
   const headerSolid = isScrolled || currentPage !== 'home';
 
   useEffect(() => {
-    // Clean up previous triggers to prevent duplicates when navigating
-    ScrollTrigger.getAll().forEach(t => t.kill());
-
-    if (currentPage === 'home') {
-      // Stats Counter Animation
-      if (statsRef.current && numberRef.current) {
-        gsap.to(numberRef.current, {
-          innerHTML: 99.9,
-          duration: 2,
-          snap: { innerHTML: 0.1 },
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: statsRef.current,
-            start: "top 75%",
-          },
-          onUpdate: function() {
-            if (numberRef.current) {
-              numberRef.current.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+    const ctx = gsap.context(() => {
+      if (currentPage === 'home') {
+        // Stats Counter Animation
+        if (statsRef.current && numberRef.current) {
+          gsap.to(numberRef.current, {
+            innerHTML: 99.9,
+            duration: 2,
+            snap: { innerHTML: 0.1 },
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: "top 75%",
+            },
+            onUpdate: function() {
+              if (numberRef.current) {
+                numberRef.current.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+              }
             }
-          }
-        });
+          });
+        }
+
+        // Horizontal Scroll Team
+        if (teamWrapperRef.current && teamContainerRef.current) {
+          gsap.to(teamContainerRef.current, {
+            x: () => -(teamContainerRef.current!.scrollWidth - window.innerWidth),
+            ease: "none",
+            scrollTrigger: {
+              trigger: teamWrapperRef.current,
+              pin: true,
+              scrub: 1,
+              invalidateOnRefresh: true,
+              end: () => "+=" + teamContainerRef.current!.scrollWidth
+            }
+          });
+        }
       }
 
-      // Horizontal Scroll Team
-      if (teamWrapperRef.current && teamContainerRef.current) {
-        gsap.to(teamContainerRef.current, {
-          x: () => -(teamContainerRef.current!.scrollWidth - window.innerWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: teamWrapperRef.current,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            end: () => "+=" + teamContainerRef.current!.scrollWidth
-          }
-        });
-      }
-    }
-
-    // Fade up elements
-    const fadeElements = document.querySelectorAll('.fade-up');
-    fadeElements.forEach((el) => {
-      gsap.fromTo(el, 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 85%" } }
-      );
+      // Fade up elements
+      const fadeElements = document.querySelectorAll('.fade-up');
+      fadeElements.forEach((el) => {
+        gsap.fromTo(el, 
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 85%" } }
+        );
+      });
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
+    return () => ctx.revert();
   }, [currentPage]);
 
   return (
@@ -116,7 +124,7 @@ function App() {
             We build<br />around <span className="italic font-light">you</span>
           </h1>
           <p className="text-xl text-white/90 mb-10 font-light">Client Focused. Community First.</p>
-          <button className="bg-white/90 backdrop-blur-sm text-brand-dark rounded-full px-8 py-4 font-medium flex items-center gap-3 hover:bg-white transition-colors">
+          <button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }} className="bg-white/90 backdrop-blur-sm text-brand-dark rounded-full px-8 py-4 font-medium flex items-center gap-3 hover:bg-white transition-colors">
             See Our Work <ArrowRight className="w-5 h-5 text-brand-primary" />
           </button>
         </div>
@@ -214,10 +222,10 @@ function App() {
 
         <div className="relative mt-16 pb-32">
           {[
-            { title: 'The Horizon Villa', loc: 'Malibu, CA', tag: 'Luxury Residential', img: 'home-proj1' },
-            { title: 'Eco-Modern Retreat', loc: 'Austin, TX', tag: 'Sustainable', img: 'home-proj2' },
-            { title: 'Urban Glasshouse', loc: 'Seattle, WA', tag: 'Architecture', img: 'home-proj3' },
-            { title: 'Heritage Estate', loc: 'Charleston, SC', tag: 'Renovation', img: 'home-proj4' }
+            { title: 'The Horizon Villa', loc: 'Chicago, IL', tag: 'Luxury Residential', img: 'home-proj1' },
+            { title: 'Eco-Modern Retreat', loc: 'Houston, TX', tag: 'Sustainable', img: 'home-proj2' },
+            { title: 'The Glass Pavilion', loc: 'Lekki, Lagos', tag: 'Architecture', img: 'home-proj3' },
+            { title: 'Heritage Estate', loc: 'Chicago, IL', tag: 'Renovation', img: 'home-proj4' }
           ].map((proj, i) => (
             <div 
               key={i} 
@@ -323,30 +331,20 @@ function App() {
           <SectionHeader subtitle="LEADERSHIP" title={<>Meet the <Highlight>Executives</Highlight></>} />
         </div>
         <div ref={teamContainerRef} className="flex gap-8 px-6 w-max h-[60vh] min-h-[400px]">
-          {/* Executive 1 */}
-          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/exec1/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
-              <h3 className="text-3xl font-heading mb-2">John Doe</h3>
-              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Executive Officer</p>
+          {[
+            { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
+            { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
+            { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
+            { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" }
+          ].map((exec, i) => (
+            <div key={i} className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
+              <img src={`https://picsum.photos/seed/${exec.img}/800/1000`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+                <h3 className="text-3xl font-heading mb-2">{exec.name}</h3>
+                <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">{exec.role}</p>
+              </div>
             </div>
-          </div>
-          {/* Executive 2 */}
-          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/exec2/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
-              <h3 className="text-3xl font-heading mb-2">Jane Smith</h3>
-              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Operations Officer</p>
-            </div>
-          </div>
-          {/* Executive 3 */}
-          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
-            <img src="https://picsum.photos/seed/exec3/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
-              <h3 className="text-3xl font-heading mb-2">Michael Johnson</h3>
-              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Financial Officer</p>
-            </div>
-          </div>
+          ))}
           {/* View All Button Card */}
           <div className="w-[80vw] md:w-[30vw] h-full flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-12">
             <div className="text-center">

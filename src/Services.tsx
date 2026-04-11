@@ -5,17 +5,20 @@ import { Highlight, Button } from './components/ui';
 
 export default function Services() {
   useEffect(() => {
-    const fadeElements = document.querySelectorAll('.services-fade-up');
-    fadeElements.forEach((el) => {
-      gsap.fromTo(el, 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 85%" } }
-      );
+    const ctx = gsap.context(() => {
+      const fadeElements = document.querySelectorAll('.services-fade-up');
+      fadeElements.forEach((el) => {
+        gsap.fromTo(el, 
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 85%" } }
+        );
+      });
     });
+    return () => ctx.revert();
   }, []);
 
   const ServiceSection = ({ id, title, quote, text, highlight, listTitle, list, img }: any) => (
-    <div id={id} className="pt-24 border-t border-gray-200 mt-12 services-fade-up scroll-mt-20">
+    <div id={id} className="pt-24 border-t border-gray-200 mt-12 services-fade-up scroll-mt-40">
       <h2 className="text-4xl font-light mb-6 font-heading">{title}</h2>
       {quote && <p className="text-xl text-gray-600 mb-6 font-light">"{quote}"</p>}
       <p className="text-lg text-gray-700 leading-relaxed mb-8">
