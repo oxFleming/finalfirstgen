@@ -5,16 +5,19 @@ import { Menu, ArrowRight, Play, X } from 'lucide-react';
 import { Highlight, Button, SectionHeader, AccordionItem } from './components/ui';
 import Services from './Services';
 import Portfolio from './Portfolio';
+import Team from './Team';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const [activeAccordion, setActiveAccordion] = useState<number | null>(1);
+  const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
+  const teamWrapperRef = useRef<HTMLDivElement>(null);
+  const teamContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,23 +30,43 @@ function App() {
   const headerSolid = isScrolled || currentPage !== 'home';
 
   useEffect(() => {
-    // Stats Counter Animation
-    if (statsRef.current && numberRef.current) {
-      gsap.to(numberRef.current, {
-        innerHTML: 99.9,
-        duration: 2,
-        snap: { innerHTML: 0.1 },
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: statsRef.current,
-          start: "top 75%",
-        },
-        onUpdate: function() {
-          if (numberRef.current) {
-            numberRef.current.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+    // Clean up previous triggers to prevent duplicates when navigating
+    ScrollTrigger.getAll().forEach(t => t.kill());
+
+    if (currentPage === 'home') {
+      // Stats Counter Animation
+      if (statsRef.current && numberRef.current) {
+        gsap.to(numberRef.current, {
+          innerHTML: 99.9,
+          duration: 2,
+          snap: { innerHTML: 0.1 },
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: statsRef.current,
+            start: "top 75%",
+          },
+          onUpdate: function() {
+            if (numberRef.current) {
+              numberRef.current.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
+            }
           }
-        }
-      });
+        });
+      }
+
+      // Horizontal Scroll Team
+      if (teamWrapperRef.current && teamContainerRef.current) {
+        gsap.to(teamContainerRef.current, {
+          x: () => -(teamContainerRef.current!.scrollWidth - window.innerWidth),
+          ease: "none",
+          scrollTrigger: {
+            trigger: teamWrapperRef.current,
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true,
+            end: () => "+=" + teamContainerRef.current!.scrollWidth
+          }
+        });
+      }
     }
 
     // Fade up elements
@@ -54,7 +77,11 @@ function App() {
         { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: el, start: "top 85%" } }
       );
     });
-  }, []);
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, [currentPage]);
 
   return (
     <div className="min-h-screen bg-brand-gray font-sans selection:bg-brand-primary selection:text-white">
@@ -227,26 +254,26 @@ function App() {
 
         <div className="border-t border-gray-300 fade-up">
           <AccordionItem 
-            title="Preconstruction" 
-            content="Trade guesswork for a clear roadmap to success with First Generation Homes. We have an entire team dedicated to a proactive preconstruction process, defining costs and timelines early, securing permits, and uncovering potential challenges well before you break ground."
+            title="Custom Residential Construction" 
+            content="We design and construct custom homes tailored to client specifications. Projects typically involve architectural design collaboration, structural construction, interior finishing, and landscaping integration."
             isOpen={activeAccordion === 0}
             onClick={() => setActiveAccordion(activeAccordion === 0 ? null : 0)}
           />
           <AccordionItem 
-            title="Design-Build" 
-            content="Streamline your project with one trusted partner from start to finish. By acting as your single point of accountability for all project phases, even post construction, you can leave the juggling to us and enjoy the building process more."
+            title="Home Renovation & Modernization" 
+            content="We undertake full-scale residential renovation projects aimed at upgrading existing homes and increasing property value, including kitchen remodels, bathroom renovations, and structural upgrades."
             isOpen={activeAccordion === 1}
             onClick={() => setActiveAccordion(activeAccordion === 1 ? null : 1)}
           />
           <AccordionItem 
-            title="CM at Risk" 
-            content="Realizing your vision should be exciting, not anxiety-inducing. Our CMAR provides a proactive approach to project management that helps reduce risks, keep timelines on track and guarantee costs within your budget."
+            title="Building Development" 
+            content="Transforming land into residential or mixed-use developments. Activities include development planning, building construction, project management, and development consulting."
             isOpen={activeAccordion === 2}
             onClick={() => setActiveAccordion(activeAccordion === 2 ? null : 2)}
           />
           <AccordionItem 
-            title="Construction" 
-            content="When you have a design ready to go, First Generation Homes makes the building process simple, straightforward and transparent. Our team develops a precise project plan, commits to a set price, and executes with excellence."
+            title="Materials & Finishing" 
+            content="We support construction projects through sourcing and installation of building finishing materials, including tile products, wood flooring, kitchen fixtures, and interior finishing materials."
             isOpen={activeAccordion === 3}
             onClick={() => setActiveAccordion(activeAccordion === 3 ? null : 3)}
           />
@@ -289,11 +316,52 @@ function App() {
           <p className="text-gray-600">Anderson School District 3<br/>Superintendent</p>
         </div>
       </section>
+
+      {/* Our Team - Horizontal Scroll */}
+      <section ref={teamWrapperRef} className="bg-white py-24 overflow-hidden">
+        <div className="px-6 mb-12 fade-up">
+          <SectionHeader subtitle="LEADERSHIP" title={<>Meet the <Highlight>Executives</Highlight></>} />
+        </div>
+        <div ref={teamContainerRef} className="flex gap-8 px-6 w-max h-[60vh] min-h-[400px]">
+          {/* Executive 1 */}
+          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/exec1/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+              <h3 className="text-3xl font-heading mb-2">John Doe</h3>
+              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Executive Officer</p>
+            </div>
+          </div>
+          {/* Executive 2 */}
+          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/exec2/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+              <h3 className="text-3xl font-heading mb-2">Jane Smith</h3>
+              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Operations Officer</p>
+            </div>
+          </div>
+          {/* Executive 3 */}
+          <div className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
+            <img src="https://picsum.photos/seed/exec3/800/1000" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+              <h3 className="text-3xl font-heading mb-2">Michael Johnson</h3>
+              <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">Chief Financial Officer</p>
+            </div>
+          </div>
+          {/* View All Button Card */}
+          <div className="w-[80vw] md:w-[30vw] h-full flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-12">
+            <div className="text-center">
+              <h3 className="text-3xl font-heading mb-6 text-brand-dark">The Minds Behind the Vision</h3>
+              <Button onClick={() => { setCurrentPage('team'); window.scrollTo(0,0); }}>View Full Team</Button>
+            </div>
+          </div>
+        </div>
+      </section>
       </main>
       )}
 
       {currentPage === 'services' && <Services />}
       {currentPage === 'portfolio' && <Portfolio />}
+      {currentPage === 'team' && <Team />}
 
       {/* Footer CTA */}
       <section className="px-6 py-24 text-center border-b border-gray-300">
@@ -383,6 +451,7 @@ function App() {
             <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Home</button>
             <button onClick={() => { setCurrentPage('services'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Services</button>
             <button onClick={() => { setCurrentPage('portfolio'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Portfolio</button>
+            <button onClick={() => { setCurrentPage('team'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Team</button>
           </div>
         </div>
       )}
