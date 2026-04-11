@@ -38,9 +38,9 @@ export const Highlight = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const Button = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+export const Button = ({ children, className = "", onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => {
   return (
-    <button className={`group flex items-center gap-2 rounded-full border border-brand-dark px-6 py-3 text-sm font-medium transition-colors hover:bg-brand-dark hover:text-white ${className}`}>
+    <button onClick={onClick} className={`group flex items-center gap-2 rounded-full border border-brand-dark px-6 py-3 text-sm font-medium transition-colors hover:bg-brand-dark hover:text-white ${className}`}>
       {children}
       <ArrowRight className="w-4 h-4 text-brand-primary group-hover:text-white transition-colors" />
     </button>

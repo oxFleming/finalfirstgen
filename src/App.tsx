@@ -1,15 +1,30 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Menu, ArrowRight, Play } from 'lucide-react';
+import { Menu, ArrowRight, Play, X } from 'lucide-react';
 import { Highlight, Button, SectionHeader, AccordionItem } from './components/ui';
+import Services from './Services';
+import Portfolio from './Portfolio';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(1);
+  const [currentPage, setCurrentPage] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const statsRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const headerSolid = isScrolled || currentPage !== 'home';
 
   useEffect(() => {
     // Stats Counter Animation
@@ -45,19 +60,21 @@ function App() {
     <div className="min-h-screen bg-brand-gray font-sans selection:bg-brand-primary selection:text-white">
       
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 bg-white border-b border-gray-200 shadow-sm">
-        <div className="flex flex-col items-start leading-none font-heading select-none text-brand-dark">
+      <header className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-4 transition-all duration-300 ${headerSolid ? 'bg-white border-b border-gray-200 shadow-sm' : 'bg-transparent'}`}>
+        <div onClick={() => { setCurrentPage('home'); window.scrollTo(0,0); }} className={`flex flex-col items-start leading-none font-heading select-none cursor-pointer transition-colors duration-300 ${headerSolid ? 'text-brand-dark' : 'text-white'}`}>
           <span className="text-lg md:text-xl font-light tracking-[0.15em] uppercase">First</span>
-          <span className="text-xl md:text-2xl font-bold tracking-tight uppercase text-brand-primary">Generation</span>
-          <span className="text-[0.55rem] md:text-[0.60rem] font-medium tracking-[0.5em] uppercase text-gray-500 mt-1">Homes</span>
+          <span className={`text-xl md:text-2xl font-bold tracking-tight uppercase transition-colors duration-300 ${headerSolid ? 'text-brand-primary' : 'text-white'}`}>Generation</span>
+          <span className={`text-[0.55rem] md:text-[0.60rem] font-medium tracking-[0.5em] uppercase mt-1 transition-colors duration-300 ${headerSolid ? 'text-gray-500' : 'text-white/80'}`}>Homes</span>
         </div>
-        <button className="p-2 text-brand-dark hover:text-brand-primary transition-colors">
+        <button onClick={() => setIsMenuOpen(true)} className={`p-2 transition-colors duration-300 ${headerSolid ? 'text-brand-dark hover:text-brand-primary' : 'text-white hover:text-white/80'}`}>
           <Menu className="w-7 h-7" />
         </button>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative h-[90vh] flex flex-col justify-center px-6 overflow-hidden bg-gray-900">
+      {currentPage === 'home' && (
+        <main>
+          {/* Hero Section */}
+          <section className="relative h-[90vh] flex flex-col justify-center px-6 overflow-hidden bg-gray-900">
         <img 
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" 
           alt="Luxury Home Background" 
@@ -90,10 +107,10 @@ function App() {
       <section className="px-6 py-24 bg-brand-gray">
         <SectionHeader 
           subtitle="WHO WE ARE" 
-          title={<>General Contracting<br />the <Highlight>Right Way</Highlight></>} 
+          title={<>Real Estate Development & Construction the <Highlight>Right Way</Highlight></>} 
         />
         <p className="text-lg text-gray-700 leading-relaxed mb-10 fade-up">
-          At First Generation Homes, our clients are true partners, and we earn your trust through transparency, excellence, and integrity. With every home we build, we invest in the community it calls home.
+          First Generation Homes LLC is a U.S.-based real estate development and construction company headquartered in Chicago, Illinois. Operating as part of the broader FGIP ecosystem, we focus on residential construction, renovation, and development projects while also supporting international real estate initiatives.
         </p>
         <div className="fade-up">
           <Button>About Us</Button>
@@ -128,9 +145,9 @@ function App() {
       <section className="px-6 py-24 border-t border-gray-300 mt-12">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR SECTORS</h3>
         <div className="flex flex-col gap-4">
-          {['Custom Homes', 'Luxury Estates', 'Renovations', 'Multi-Family', 'Community Development'].map((sector, i) => (
+          {['Custom Residential Construction', 'Home Renovation & Modernization', 'Building Development', 'Construction Materials', 'International Development'].map((sector, i) => (
             <button key={i} className="group relative w-full text-left border border-gray-300 rounded-full px-8 py-5 flex justify-between items-center overflow-hidden hover:border-brand-dark transition-colors fade-up">
-              <span className="text-2xl font-light relative z-10 font-heading">{sector}</span>
+              <span className="text-xl md:text-2xl font-light relative z-10 font-heading">{sector}</span>
               <ArrowRight className="w-6 h-6 relative z-10" />
               {/* Hover image effect simulation */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 z-0">
@@ -165,7 +182,7 @@ function App() {
           Every distinct home in our diverse portfolio represents one uncommon commitment: Our determination to make your vision, experience and satisfaction the top priority. When you put people first, results follow—and these projects speak for themselves.
         </p>
         <div className="mb-16 fade-up">
-          <Button>View Portfolio</Button>
+          <Button onClick={() => { setCurrentPage('portfolio'); window.scrollTo(0,0); }}>View Portfolio</Button>
         </div>
 
         <div className="relative mt-16 pb-32">
@@ -205,7 +222,7 @@ function App() {
           title={<>Full-circle, <Highlight>proven</Highlight> building services at an unmatched <Highlight>value</Highlight>.</>} 
         />
         <div className="mb-16 fade-up">
-          <Button>View Services</Button>
+          <Button onClick={() => { setCurrentPage('services'); window.scrollTo(0,0); }}>View Services</Button>
         </div>
 
         <div className="border-t border-gray-300 fade-up">
@@ -272,6 +289,11 @@ function App() {
           <p className="text-gray-600">Anderson School District 3<br/>Superintendent</p>
         </div>
       </section>
+      </main>
+      )}
+
+      {currentPage === 'services' && <Services />}
+      {currentPage === 'portfolio' && <Portfolio />}
 
       {/* Footer CTA */}
       <section className="px-6 py-24 text-center border-b border-gray-300">
@@ -291,12 +313,12 @@ function App() {
         
         <div className="grid grid-cols-2 gap-y-8 gap-x-4 mb-16 text-sm">
           <div>
-            <p className="font-medium mb-1">Upstate Region:</p>
-            <p className="text-gray-600">(864) 972-4720</p>
+            <p className="font-medium mb-1">US Operations:</p>
+            <p className="text-gray-600">Chicago, IL | Houston, TX</p>
           </div>
           <div>
-            <p className="font-medium mb-1">Coastal Region:</p>
-            <p className="text-gray-600">(854) 800-3222</p>
+            <p className="font-medium mb-1">International:</p>
+            <p className="text-gray-600">Lagos, Nigeria</p>
           </div>
           <div className="col-span-2">
             <a href="mailto:info@firstgenhomes.com" className="text-brand-primary font-medium text-lg">info@firstgenhomes.com</a>
@@ -323,22 +345,18 @@ function App() {
           <a href="#" className="hover:text-brand-primary transition-colors">Instagram</a>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 text-sm mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm mb-16">
           <div>
-            <h4 className="text-brand-primary font-bold text-base mb-2">Anderson, SC</h4>
-            <p className="text-gray-600">109 Nunnally Rd.<br/>Anderson, SC 29625</p>
+            <h4 className="text-brand-primary font-bold text-base mb-2">Chicago HQ</h4>
+            <p className="text-gray-600">444 W Lake Street<br/>Suite 1700<br/>Chicago, IL 60606</p>
           </div>
           <div>
-            <h4 className="text-brand-primary font-bold text-base mb-2">Charleston, SC</h4>
-            <p className="text-gray-600">4465 Tile Dr.<br/>Suite 105<br/>North Charleston, SC 29405</p>
+            <h4 className="text-brand-primary font-bold text-base mb-2">Houston</h4>
+            <p className="text-gray-600">Houston, Texas<br/>United States</p>
           </div>
           <div>
-            <h4 className="text-brand-primary font-bold text-base mb-2">Spartanburg, SC</h4>
-            <p className="text-gray-600">104 N. Daniel Morgan Ave.<br/>#220<br/>Spartanburg, SC 29306</p>
-          </div>
-          <div>
-            <h4 className="text-brand-primary font-bold text-base mb-2">Westminster, SC</h4>
-            <p className="text-gray-600">12245 SC-11,<br/>Westminster, SC 29693</p>
+            <h4 className="text-brand-primary font-bold text-base mb-2">Lagos</h4>
+            <p className="text-gray-600">Lekki & Ikeja Offices<br/>Lagos, Nigeria</p>
           </div>
         </div>
 
@@ -347,6 +365,27 @@ function App() {
           <a href="#" className="hover:text-brand-dark transition-colors">Privacy Policy</a>
         </div>
       </footer>
+
+      {/* Full Screen Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-white z-[60] flex flex-col">
+          <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+            <div className="flex flex-col items-start leading-none font-heading select-none text-brand-dark">
+              <span className="text-lg md:text-xl font-light tracking-[0.15em] uppercase">First</span>
+              <span className="text-xl md:text-2xl font-bold tracking-tight uppercase text-brand-primary">Generation</span>
+              <span className="text-[0.55rem] md:text-[0.60rem] font-medium tracking-[0.5em] uppercase text-gray-500 mt-1">Homes</span>
+            </div>
+            <button onClick={() => setIsMenuOpen(false)} className="p-2 text-brand-dark hover:text-brand-primary transition-colors">
+              <X className="w-8 h-8" />
+            </button>
+          </div>
+          <div className="flex-1 flex flex-col justify-center items-center gap-8 text-3xl font-heading font-light">
+            <button onClick={() => { setCurrentPage('home'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Home</button>
+            <button onClick={() => { setCurrentPage('services'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Services</button>
+            <button onClick={() => { setCurrentPage('portfolio'); setIsMenuOpen(false); window.scrollTo(0,0); }} className="hover:text-brand-primary transition-colors">Portfolio</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
