@@ -20,6 +20,40 @@ function App() {
   const teamWrapperRef = useRef<HTMLDivElement>(null);
   const teamContainerRef = useRef<HTMLDivElement>(null);
 
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formErrors, setFormErrors] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState('');
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    let valid = true;
+    const errors = { name: '', email: '', message: '' };
+
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+      valid = false;
+    }
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+      valid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Invalid email format';
+      valid = false;
+    }
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+      valid = false;
+    }
+
+    setFormErrors(errors);
+
+    if (valid) {
+      setFormStatus('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus(''), 5000);
+    }
+  };
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -409,13 +443,68 @@ function App() {
       {currentPage === 'portfolio' && <Portfolio />}
       {currentPage === 'team' && <Team />}
 
-      {/* Footer CTA */}
-      <section className="px-6 py-24 text-center border-b border-gray-300">
-        <button className="text-2xl font-medium text-brand-primary flex items-center justify-center gap-2 mx-auto hover:opacity-80 transition-opacity fade-up font-heading">
-          Let's get started <ArrowRight className="w-6 h-6" />
-        </button>
-        <div className="mt-16 flex justify-center fade-up">
-          <img src="https://picsum.photos/seed/home-hardhats/800/300" alt="Hard hats on shovels" className="w-full max-w-2xl object-cover rounded-sm" referrerPolicy="no-referrer" />
+      {/* Footer CTA & Contact Form */}
+      <section className="px-6 py-24 border-b border-gray-300 bg-white" id="contact-form-section">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12 fade-up">
+            <h2 className="text-4xl font-heading mb-4 text-brand-dark">Let's get started</h2>
+            <p className="text-gray-600">Fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          <form onSubmit={handleFormSubmit} className="space-y-6 fade-up" noValidate>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  value={formData.name}
+                  onChange={(e) => {
+                    setFormData({...formData, name: e.target.value});
+                    if (formErrors.name) setFormErrors({...formErrors, name: ''});
+                  }}
+                  className={`w-full px-4 py-3 rounded-md border ${formErrors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                  placeholder="Your Name"
+                />
+                {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  value={formData.email}
+                  onChange={(e) => {
+                    setFormData({...formData, email: e.target.value});
+                    if (formErrors.email) setFormErrors({...formErrors, email: ''});
+                  }}
+                  className={`w-full px-4 py-3 rounded-md border ${formErrors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                  placeholder="your@email.com"
+                />
+                {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
+              <textarea 
+                id="message" 
+                rows={4}
+                value={formData.message}
+                onChange={(e) => {
+                  setFormData({...formData, message: e.target.value});
+                  if (formErrors.message) setFormErrors({...formErrors, message: ''});
+                }}
+                className={`w-full px-4 py-3 rounded-md border ${formErrors.message ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                placeholder="How can we help you?"
+              ></textarea>
+              {formErrors.message && <p className="text-red-500 text-xs mt-1">{formErrors.message}</p>}
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button type="submit" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-3 rounded-md font-medium hover:bg-brand-dark transition-colors flex items-center justify-center gap-2">
+                Send Message <ArrowRight className="w-4 h-4" />
+              </button>
+              {formStatus && <p className="text-green-600 font-medium">{formStatus}</p>}
+            </div>
+          </form>
         </div>
       </section>
 
