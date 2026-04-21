@@ -124,8 +124,8 @@ export default function Portfolio() {
   }, [activeFilter]);
 
   return (
-    <div className="pt-32 pb-24 max-w-5xl mx-auto">
-      <div className="px-6 mb-12 portfolio-fade-up">
+    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
+      <div className="mb-12 portfolio-fade-up">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-4">OUR WORK</h3>
         <h1 className="text-5xl md:text-7xl font-light mb-8 font-heading">Portfolio</h1>
         <p className="text-lg text-gray-700 leading-relaxed mb-10">
@@ -179,7 +179,7 @@ export default function Portfolio() {
                   <span>•</span>
                   <span>{featuredProject.location}</span>
                 </div>
-                <p className="text-white/90 text-[15px] line-clamp-2 max-w-3xl leading-relaxed">
+                <p className="text-white/90 text-base line-clamp-2 max-w-3xl leading-relaxed">
                   {featuredProject.description}
                 </p>
               </div>
@@ -191,7 +191,7 @@ export default function Portfolio() {
         </div>
       )}
 
-      <div className="px-6 grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
         {remainingProjects.map(project => (
           <div 
             key={project.id} 
@@ -218,7 +218,7 @@ export default function Portfolio() {
                 <span className="text-gray-400 text-xs">•</span>
                 <p className="text-gray-500 text-sm">{project.location}</p>
               </div>
-              <p className="text-gray-600 text-[15px] mb-4 line-clamp-3 leading-relaxed pr-4">
+              <p className="text-gray-600 text-base mb-4 line-clamp-3 leading-relaxed pr-4">
                 {project.description}
               </p>
               <div className="text-brand-primary text-sm font-medium flex items-center gap-1 group-hover:underline">
@@ -324,7 +324,7 @@ export default function Portfolio() {
               
               <div className="w-12 h-1 bg-brand-primary mb-6 flex-shrink-0"></div>
               
-              <div className="text-[15px] text-gray-600 leading-relaxed whitespace-pre-wrap mb-8">
+              <div className="text-base text-gray-600 leading-relaxed whitespace-pre-wrap mb-8">
                 {selectedProject.description}
               </div>
               

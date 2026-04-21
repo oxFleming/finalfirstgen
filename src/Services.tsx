@@ -26,32 +26,34 @@ export default function Services() {
   }, []);
 
   const ServiceSection = ({ id, title, quote, text, highlight, listTitle, list, img }: any) => (
-    <div id={id} className="pt-24 border-t border-gray-200 mt-12 services-fade-up scroll-mt-40">
-      <h2 className="text-4xl font-light mb-6 font-heading">{title}</h2>
-      {quote && <p className="text-xl text-gray-600 mb-6 font-light">"{quote}"</p>}
-      <p className="text-lg text-gray-700 leading-relaxed mb-8">
-        {text.split(highlight).map((part: string, i: number, arr: any[]) => 
-          i === arr.length - 1 ? part : <React.Fragment key={i}>{part}<Highlight>{highlight}</Highlight></React.Fragment>
-        )}
-      </p>
-      <h4 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-6">{listTitle}</h4>
-      <ul className="space-y-4 mb-10">
-        {list.map((item: string, i: number) => (
-          <li key={i} className="flex items-start gap-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-primary mt-2.5 shrink-0"></span>
-            <span className="text-gray-700 leading-relaxed">{item}</span>
-          </li>
-        ))}
-      </ul>
-      <div className="mb-12">
-        <Button>Get Started</Button>
+    <div id={id} className="pt-24 border-t border-gray-200 mt-12 services-fade-up scroll-mt-40 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <div>
+        <h2 className="text-4xl font-light mb-6 font-heading">{title}</h2>
+        {quote && <p className="text-xl text-gray-600 mb-6 font-light">"{quote}"</p>}
+        <p className="text-lg text-gray-700 leading-relaxed mb-8">
+          {text.split(highlight).map((part: string, i: number, arr: any[]) => 
+            i === arr.length - 1 ? part : <React.Fragment key={i}>{part}<Highlight>{highlight}</Highlight></React.Fragment>
+          )}
+        </p>
+        <h4 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-6">{listTitle}</h4>
+        <ul className="space-y-4 mb-10">
+          {list.map((item: string, i: number) => (
+            <li key={i} className="flex items-start gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-primary mt-2.5 shrink-0"></span>
+              <span className="text-gray-700 leading-relaxed">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="mb-0">
+          <Button onClick={() => { document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' }); }}>Get Started</Button>
+        </div>
       </div>
-      <img src={img} alt={title} className="w-full aspect-[16/9] object-cover rounded-sm" referrerPolicy="no-referrer" />
+      <img src={img} alt={title} className="w-full aspect-[4/3] lg:aspect-[16/9] object-cover rounded-sm sticky top-32" referrerPolicy="no-referrer" />
     </div>
   );
 
   return (
-    <div className="px-6 pt-32 pb-24 max-w-5xl mx-auto">
+    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
       <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-6 services-fade-up">SERVICES</h3>
       <h1 className="text-5xl md:text-7xl font-light leading-tight mb-12 font-heading services-fade-up">From blueprint to<br/>ribbon-cutting</h1>
       
