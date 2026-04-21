@@ -136,33 +136,33 @@ export default function Home() {
       </section>
 
       {/* Merged Redesign */}
-      <section className="px-6 pt-24 pb-20 lg:pt-32 lg:pb-32 flex items-center bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section className="px-6 py-16 lg:py-20 flex items-center bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           
           {/* Text Side (Left) */}
           <div className="order-2 lg:order-1 fade-up pr-0 lg:pr-8">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-6 text-gray-800 tracking-tight font-heading">
-              General Contracting<br className="hidden lg:block"/> the <span className="bg-[#E60000] text-white px-3 py-1 inline-block mt-2 leading-[1.1]">Right Way</span>
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-medium leading-[1.1] mb-5 text-gray-800 tracking-tight font-heading">
+              Real Estate Development &amp;<br className="hidden lg:block"/> Construction the <span className="bg-brand-primary text-white px-3 py-1 inline-block mt-2 leading-[1.1]">Right Way</span>
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg font-light">
-              At First Generation Homes, our clients are true partners, and we earn your trust through transparency, excellence, and integrity. With every home we build, we invest in the community it calls home.
+            <p className="text-base text-gray-600 leading-relaxed mb-6 max-w-lg font-light">
+              First Generation Homes LLC is a U.S.-based real estate development and construction company headquartered in Chicago, Illinois. Operating as part of the broader FGIP ecosystem, we focus on residential construction, renovation, and development projects while also supporting international real estate initiatives.
             </p>
-            <button onClick={() => handleNavigate('/team')} className="border border-[#E60000] text-gray-800 rounded-full px-8 py-3 font-medium flex items-center gap-3 hover:bg-[#E60000] hover:text-white transition-colors cursor-pointer w-max text-sm group">
+            <button onClick={() => handleNavigate('/team')} className="border border-brand-primary text-gray-800 rounded-full px-6 py-2.5 font-medium flex items-center gap-3 hover:bg-brand-primary hover:text-white transition-colors cursor-pointer w-max text-sm group">
               About Us <ArrowRight className="w-4 h-4 text-gray-800 group-hover:text-white transition-colors" />
             </button>
           </div>
 
           {/* Video Side (Right) */}
-          <div className="order-1 lg:order-2 relative fade-up mt-8 lg:mt-0">
-             {/* Floating Red Line attached to Image */}
-             <div className="absolute top-12 lg:top-20 -left-6 lg:-left-16 w-16 lg:w-32 h-[2px] bg-[#E60000] z-10 hidden md:block"></div>
+          <div className="order-1 lg:order-2 relative fade-up mt-6 lg:mt-0">
+             {/* Floating Line attached to Image */}
+             <div className="absolute top-8 lg:top-16 -left-6 lg:-left-12 w-16 lg:w-24 h-[2px] bg-brand-primary z-10 hidden md:block"></div>
              
-             <div className="relative aspect-[4/3] lg:aspect-[16/10] w-full shadow-lg group select-none overflow-hidden rounded-sm bg-gray-100">
-                <img src="https://picsum.photos/seed/contractor3/1600/1000" alt="Construction Worker" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+             <div className="relative aspect-[4/3] lg:aspect-video w-full shadow-lg group select-none overflow-hidden rounded-sm bg-gray-100">
+                <img src="https://picsum.photos/seed/contractor3/1600/900" alt="Construction Worker" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full border-[3px] border-white flex items-center justify-center cursor-pointer backdrop-blur-md transition-transform hover:scale-105 shadow-xl bg-black/20">
-                    <Play className="w-8 h-8 lg:w-10 lg:h-10 text-white ml-2 drop-shadow-md" fill="currentColor" />
+                  <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-[3px] border-white flex items-center justify-center cursor-pointer backdrop-blur-md transition-transform hover:scale-105 shadow-xl bg-black/20">
+                    <Play className="w-6 h-6 lg:w-8 lg:h-8 text-white ml-1.5 drop-shadow-md" fill="currentColor" />
                   </div>
                 </div>
              </div>
@@ -239,16 +239,16 @@ export default function Home() {
 
       {/* Trusted By - Infinite Marquee */}
       <section className="py-16 bg-white overflow-hidden border-y border-gray-200">
-        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10 text-center">Trusted by:</h3>
-        <div className="flex w-[200%] animate-marquee opacity-60 hover:opacity-100 transition-opacity duration-500">
+        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10 text-center">TRUSTED BY</h3>
+        <div className="flex w-max animate-marquee opacity-60 hover:opacity-100 transition-opacity duration-500">
           {[1, 2].map((set) => (
-            <div key={set} className="flex justify-around items-center w-1/2 px-4 gap-16">
-              <div className="font-bold text-3xl font-heading tracking-tighter">LUMINA</div>
-              <div className="font-serif italic text-2xl">Oak & Stone</div>
-              <div className="font-bold text-2xl tracking-widest">VERTEX</div>
-              <div className="font-light text-3xl font-heading">NEXUS</div>
-              <div className="font-bold text-2xl">ELEVATE</div>
-              <div className="font-serif text-2xl">Crestview</div>
+            <div key={set} className="flex justify-around items-center gap-12 sm:gap-16 lg:gap-24 px-6 md:px-12 shrink-0">
+              <div className="font-bold text-2xl md:text-3xl font-heading tracking-tighter shrink-0">LUMINA</div>
+              <div className="font-serif italic text-xl md:text-2xl shrink-0">Oak & Stone</div>
+              <div className="font-bold text-xl md:text-2xl tracking-widest shrink-0">VERTEX</div>
+              <div className="font-light text-2xl md:text-3xl font-heading shrink-0">NEXUS</div>
+              <div className="font-bold text-xl md:text-2xl shrink-0">ELEVATE</div>
+              <div className="font-serif text-xl md:text-2xl shrink-0">Crestview</div>
             </div>
           ))}
         </div>
@@ -374,14 +374,14 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="px-6 py-32 bg-gray-200 text-center">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-3xl md:text-4xl lg:text-5xl font-light text-brand-primary leading-tight mb-10 fade-up font-heading tracking-tight max-w-5xl mx-auto">
+      <section className="px-6 py-16 lg:py-24 bg-gray-200 text-center flex items-center justify-center">
+        <div className="max-w-4xl mx-auto">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-light text-brand-primary leading-snug mb-8 fade-up font-heading tracking-tight mx-auto">
             "We truly appreciate your commitment on this project. I wanted to acknowledge the satisfaction on our remodel. I must give a 100% satisfied mark as you not only finished the job early and under budget, but with great sub-contractors and excellent workmanship. The job was done very efficiently and timely."
           </p>
           <div className="fade-up">
-            <p className="font-medium text-lg">Raja Bilal</p>
-            <p className="text-gray-600 text-lg">CEO Focus with Raja</p>
+            <p className="font-medium text-base">Raja Bilal</p>
+            <p className="text-gray-600 text-sm">CEO Focus with Raja</p>
           </div>
         </div>
       </section>
