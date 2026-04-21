@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 py-32 overflow-hidden bg-gray-900">
+      <section className="relative h-screen min-h-[600px] flex flex-col justify-center px-6 overflow-hidden bg-gray-900">
         <img 
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" 
           alt="Luxury Home Background" 
@@ -116,7 +116,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80"></div>
         
-        <div className="relative z-10 mt-20 lg:mt-32 fade-up max-w-7xl mx-auto w-full">
+        <div className="relative z-10 fade-up max-w-7xl mx-auto w-full">
           <h1 className="text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] font-medium text-white leading-[1] mb-6 font-heading tracking-tight">
             We build<br />around <span className="italic font-light">you</span>
           </h1>
@@ -283,19 +283,19 @@ export default function Home() {
             <div 
               key={i} 
               className="project-card sticky w-full bg-brand-gray group cursor-pointer"
-              style={{ top: '100px' }}
+              style={{ top: '80px' }}
               onClick={() => handleNavigate('/portfolio')}
             >
-              <div className="border-t border-gray-300 pt-8 pb-16 lg:pt-12 lg:pb-24">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
-                <p className="text-gray-600 mb-6 lg:mb-8 text-lg lg:text-xl">{proj.loc}</p>
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 lg:mb-12 gap-4">
+              <div className="border-t border-gray-300 pt-8 pb-12 lg:pt-8 lg:pb-16">
+                <h3 className="text-3xl lg:text-4xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
+                <p className="text-gray-600 mb-6 lg:mb-6 text-lg lg:text-xl">{proj.loc}</p>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 lg:mb-10 gap-4">
                   <span className="inline-block border border-gray-300 bg-gray-50 text-gray-500 text-sm px-3 py-1 rounded-sm uppercase tracking-wider">{proj.tag}</span>
                   <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center transition-colors duration-300 group-[.is-active]:border-[#D32F2F] group-[.is-active]:text-[#D32F2F] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F] shrink-0">
                     <ArrowRight className="w-6 h-6" />
                   </div>
                 </div>
-                <div className="w-full aspect-[16/9] lg:aspect-[21/9] overflow-hidden relative rounded-xl shadow-lg">
+                <div className="w-full aspect-[16/9] lg:aspect-auto lg:h-[55vh] overflow-hidden relative rounded-xl shadow-lg">
                   <img 
                     src={proj.img} 
                     alt={proj.title} 
