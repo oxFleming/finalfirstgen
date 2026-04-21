@@ -117,7 +117,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80"></div>
         
         <div className="relative z-10 fade-up max-w-7xl mx-auto w-full">
-          <h1 className="text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] font-medium text-white leading-[1] mb-6 font-heading tracking-tight">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-medium text-white leading-[1] mb-6 font-heading tracking-tight">
             We build<br />around <span className="italic font-light">you</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-10 font-light">Client Focused. Community First.</p>
@@ -135,50 +135,60 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Who We Are */}
-      <section className="px-6 py-24 lg:py-32 bg-brand-gray">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <div>
-            <SectionHeader 
-              subtitle="WHO WE ARE" 
-              title={<>Real Estate Development &amp; Construction the <Highlight>Right Way</Highlight></>} 
-            />
-          </div>
-          <div>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-10 fade-up max-w-2xl">
-              First Generation Homes LLC is a U.S.-based real estate development and construction company headquartered in Chicago, Illinois. Operating as part of the broader FGIP ecosystem, we focus on residential construction, renovation, and development projects while also supporting international real estate initiatives.
+      {/* Merged Redesign */}
+      <section className="px-6 pt-24 pb-20 lg:pt-32 lg:pb-32 flex items-center bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          
+          {/* Text Side (Left) */}
+          <div className="order-2 lg:order-1 fade-up pr-0 lg:pr-8">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-[1.1] mb-6 text-gray-800 tracking-tight font-heading">
+              General Contracting<br className="hidden lg:block"/> the <span className="bg-[#E60000] text-white px-3 py-1 inline-block mt-2 leading-[1.1]">Right Way</span>
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed mb-8 max-w-lg font-light">
+              At First Generation Homes, our clients are true partners, and we earn your trust through transparency, excellence, and integrity. With every home we build, we invest in the community it calls home.
             </p>
-            <div className="fade-up">
-              <Button onClick={() => handleNavigate('/team')}>About Us</Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Video Placeholder */}
-      <section className="px-6 pb-24 lg:pb-32 bg-brand-gray">
-        <div className="max-w-7xl mx-auto relative aspect-video rounded-sm overflow-hidden fade-up shadow-2xl">
-          <img src="https://picsum.photos/seed/home-video/800/450" alt="Video thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-            <button className="w-20 h-20 rounded-full border-2 border-white/50 flex items-center justify-center backdrop-blur-sm hover:bg-white/10 transition-colors">
-              <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+            <button onClick={() => handleNavigate('/team')} className="border border-[#E60000] text-gray-800 rounded-full px-8 py-3 font-medium flex items-center gap-3 hover:bg-[#E60000] hover:text-white transition-colors cursor-pointer w-max text-sm group">
+              About Us <ArrowRight className="w-4 h-4 text-gray-800 group-hover:text-white transition-colors" />
             </button>
           </div>
+
+          {/* Video Side (Right) */}
+          <div className="order-1 lg:order-2 relative fade-up mt-8 lg:mt-0">
+             {/* Floating Red Line attached to Image */}
+             <div className="absolute top-12 lg:top-20 -left-6 lg:-left-16 w-16 lg:w-32 h-[2px] bg-[#E60000] z-10 hidden md:block"></div>
+             
+             <div className="relative aspect-[4/3] lg:aspect-[16/10] w-full shadow-lg group select-none overflow-hidden rounded-sm bg-gray-100">
+                <img src="https://picsum.photos/seed/contractor3/1600/1000" alt="Construction Worker" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full border-[3px] border-white flex items-center justify-center cursor-pointer backdrop-blur-md transition-transform hover:scale-105 shadow-xl bg-black/20">
+                    <Play className="w-8 h-8 lg:w-10 lg:h-10 text-white ml-2 drop-shadow-md" fill="currentColor" />
+                  </div>
+                </div>
+             </div>
+          </div>
+          
         </div>
       </section>
 
       {/* Our Mission */}
-      <section className="px-6 py-24 lg:py-32">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div className="order-2 lg:order-1 relative h-[500px] lg:h-[700px] fade-up">
-            <img src="https://picsum.photos/seed/home-team1/800/1000" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[550px] object-cover rounded-sm absolute left-0 top-0 shadow-lg" referrerPolicy="no-referrer" />
-            <img src="https://picsum.photos/seed/home-team2/800/600" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[350px] object-cover rounded-sm absolute right-0 bottom-0 border-[8px] border-white shadow-2xl z-10" referrerPolicy="no-referrer" />
+      <section className="px-6 py-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="order-2 lg:order-1 relative h-[500px] lg:h-[600px] fade-up">
+            <img src="https://picsum.photos/seed/home-team1/800/1000" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[500px] object-cover rounded-sm absolute left-0 top-0 shadow-lg" referrerPolicy="no-referrer" />
+            <img src="https://picsum.photos/seed/home-team2/800/600" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[300px] object-cover rounded-sm absolute right-0 bottom-0 border-[8px] border-white shadow-2xl z-10" referrerPolicy="no-referrer" />
           </div>
           <div className="order-1 lg:order-2">
             <SectionHeader 
               subtitle="OUR MISSION" 
               title={<>We are providers of superior, passionate service leaving a <Highlight>positive impact</Highlight> on everyone we involve, while bringing honor to God.</>} 
             />
+            {/* Custom Purple Arrow */}
+            <div className="mt-12 flex justify-center lg:justify-start fade-up">
+              <div className="w-16 h-16 rounded-full border-2 border-brand-primary flex items-center justify-center cursor-pointer hover:bg-brand-primary group transition-colors shadow-sm">
+                <ArrowRight className="w-6 h-6 text-brand-primary group-hover:text-white transition-colors rotate-90" />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,12 +255,12 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="px-6 py-24 lg:py-32 bg-brand-gray">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 lg:mb-32">
-            <div className="max-w-3xl">
-              <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-brand-primary mb-6 fade-up font-heading tracking-tight">Featured Projects</h2>
-              <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed fade-up">
+      <section className="px-6 py-24 bg-brand-gray">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-brand-primary mb-6 fade-up font-heading tracking-tight">Featured Projects</h2>
+              <p className="text-lg text-gray-700 leading-relaxed fade-up">
                 Every distinct home in our diverse portfolio represents one uncommon commitment: Our determination to make your vision, experience and satisfaction the top priority. When you put people first, results follow—and these projects speak for themselves.
               </p>
             </div>
@@ -286,10 +296,10 @@ export default function Home() {
               style={{ top: '80px' }}
               onClick={() => handleNavigate('/portfolio')}
             >
-              <div className="border-t border-gray-300 pt-8 pb-12 lg:pt-8 lg:pb-16">
+              <div className="border-t border-gray-300 pt-8 pb-12 lg:pb-16">
                 <h3 className="text-3xl lg:text-4xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
-                <p className="text-gray-600 mb-6 lg:mb-6 text-lg lg:text-xl">{proj.loc}</p>
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 lg:mb-10 gap-4">
+                <p className="text-gray-600 mb-6 text-lg">{proj.loc}</p>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                   <span className="inline-block border border-gray-300 bg-gray-50 text-gray-500 text-sm px-3 py-1 rounded-sm uppercase tracking-wider">{proj.tag}</span>
                   <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center transition-colors duration-300 group-[.is-active]:border-[#D32F2F] group-[.is-active]:text-[#D32F2F] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F] shrink-0">
                     <ArrowRight className="w-6 h-6" />
@@ -311,8 +321,8 @@ export default function Home() {
       </section>
 
       {/* Our Reach (Moved Down) */}
-      <section className="px-6 py-24 lg:py-32 bg-white border-t border-gray-300 mt-12">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
+      <section className="px-6 py-24 bg-white border-t border-gray-300 mt-12">
+        <div className="max-w-7xl mx-auto">
           <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR REACH</h3>
           <div className="border-t border-gray-300 fade-up">
             <AccordionItem 
@@ -338,16 +348,16 @@ export default function Home() {
       </section>
 
       {/* Large Image */}
-      <section className="w-full h-[70vh] lg:h-[80vh]">
+      <section className="w-full h-[60vh]">
         <img src="https://picsum.photos/seed/home-crane/2400/1200" alt="Construction site" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </section>
 
       {/* Building for the best */}
-      <section className="px-6 py-24 lg:py-48 text-center max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl lg:text-7xl font-light mb-6 lg:mb-10 fade-up font-heading tracking-tight">
+      <section className="px-6 py-24 lg:py-32 text-center max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-light mb-6 fade-up font-heading tracking-tight">
           Building for the <Highlight>best</Highlight>
         </h2>
-        <p className="text-lg lg:text-2xl text-gray-600 max-w-md lg:max-w-2xl mx-auto fade-up">
+        <p className="text-lg text-gray-600 max-w-md lg:max-w-2xl mx-auto fade-up">
           Our passion is building homes, improving communities, and growing relationships.
         </p>
       </section>
@@ -364,31 +374,31 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="px-6 py-32 lg:py-48 bg-gray-200 text-center">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
-          <p className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-brand-primary leading-tight mb-10 lg:mb-16 fade-up font-heading tracking-tight max-w-6xl mx-auto">
+      <section className="px-6 py-32 bg-gray-200 text-center">
+        <div className="max-w-7xl mx-auto">
+          <p className="text-3xl md:text-4xl lg:text-5xl font-light text-brand-primary leading-tight mb-10 fade-up font-heading tracking-tight max-w-5xl mx-auto">
             "We truly appreciate your commitment on this project. I wanted to acknowledge the satisfaction on our remodel. I must give a 100% satisfied mark as you not only finished the job early and under budget, but with great sub-contractors and excellent workmanship. The job was done very efficiently and timely."
           </p>
           <div className="fade-up">
-            <p className="font-medium text-lg lg:text-xl">Raja Bilal</p>
-            <p className="text-gray-600 lg:text-lg">CEO Focus with Raja</p>
+            <p className="font-medium text-lg">Raja Bilal</p>
+            <p className="text-gray-600 text-lg">CEO Focus with Raja</p>
           </div>
         </div>
       </section>
 
       {/* Our Team - Horizontal Scroll */}
-      <section ref={teamWrapperRef} className="bg-white py-24 lg:py-32 overflow-hidden">
-        <div className="px-6 mb-12 lg:mb-16 fade-up max-w-7xl lg:max-w-[90rem] mx-auto">
+      <section ref={teamWrapperRef} className="bg-white pt-24 pb-32 overflow-hidden">
+        <div className="px-6 mb-16 fade-up max-w-[90rem] mx-auto">
           <SectionHeader subtitle="LEADERSHIP" title={<>Meet the <Highlight>Executives</Highlight></>} />
         </div>
-        <div ref={teamContainerRef} className="flex gap-8 px-6 lg:px-12 w-max h-[60vh] min-h-[400px]">
+        <div ref={teamContainerRef} className="flex gap-6 lg:gap-8 px-6 lg:px-12 w-max">
           {[
             { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
             { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
             { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
             { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" }
           ].map((exec, i) => (
-            <div key={i} className="w-[80vw] md:w-[30vw] h-full relative group shrink-0 rounded-xl overflow-hidden">
+            <div key={i} className="w-[85vw] sm:w-[400px] lg:w-[450px] aspect-[4/5] relative group shrink-0 rounded-xl overflow-hidden shadow-xl">
               <img src={`https://picsum.photos/seed/${exec.img}/800/1000`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
               <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
                 <h3 className="text-3xl font-heading mb-2">{exec.name}</h3>
@@ -397,7 +407,7 @@ export default function Home() {
             </div>
           ))}
           {/* View All Button Card */}
-          <div className="w-[80vw] md:w-[30vw] h-full flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-12">
+          <div className="w-[85vw] sm:w-[400px] lg:w-[450px] aspect-[4/5] flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-12 shadow-md">
             <div className="text-center">
               <h3 className="text-3xl font-heading mb-6 text-brand-dark">The Minds Behind the Vision</h3>
               <Button onClick={() => handleNavigate('/team')}>View Full Team</Button>

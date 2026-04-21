@@ -78,12 +78,12 @@ function App() {
     <div className="min-h-screen bg-brand-gray font-sans selection:bg-brand-primary selection:text-white">
       
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSolid ? 'bg-transparent' : 'bg-transparent'}`}>
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto flex justify-between items-center px-6 py-4 md:py-5 lg:py-4 lg:px-12">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSolid ? 'bg-white shadow-sm border-b border-gray-100' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 lg:py-5 lg:px-12">
           <Link to="/" onClick={() => handleNavClick('/')} className={`flex flex-col items-start leading-none font-heading select-none cursor-pointer transition-colors duration-300 ${headerSolid ? 'text-brand-dark' : 'text-white'}`}>
-            <span className="text-lg md:text-xl font-light tracking-[0.15em] uppercase">First</span>
-            <span className={`text-xl md:text-2xl font-bold tracking-tight uppercase transition-colors duration-300 ${headerSolid ? 'text-brand-primary' : 'text-white'}`}>Generation</span>
-            <span className={`text-[0.55rem] md:text-[0.60rem] font-medium tracking-[0.5em] uppercase mt-1 transition-colors duration-300 ${headerSolid ? 'text-gray-500' : 'text-white/80'}`}>Homes</span>
+            <span className="text-base md:text-lg font-light tracking-[0.15em] uppercase">First</span>
+            <span className={`text-lg md:text-xl font-bold tracking-tight uppercase transition-colors duration-300 ${headerSolid ? 'text-brand-primary' : 'text-white'}`}>Generation</span>
+            <span className={`text-[0.5rem] md:text-[0.55rem] font-medium tracking-[0.5em] uppercase mt-1 transition-colors duration-300 ${headerSolid ? 'text-gray-500' : 'text-white/80'}`}>Homes</span>
           </Link>
           
           <div className="hidden lg:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
@@ -107,11 +107,11 @@ function App() {
       </Routes>
 
       {/* Footer CTA & Contact Form */}
-      <section className="px-6 py-24 lg:py-32 border-t border-gray-300 bg-white" id="contact-form-section">
-        <div className="max-w-3xl lg:max-w-4xl mx-auto">
+      <section className="px-6 py-24 border-t border-gray-300 bg-white" id="contact-form-section">
+        <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-4xl lg:text-6xl font-heading mb-4 text-brand-dark tracking-tight">Let's get started</h2>
-            <p className="text-gray-600 lg:text-xl">Fill out the form below and our team will get back to you shortly.</p>
+            <h2 className="text-4xl lg:text-5xl font-heading mb-4 text-brand-dark tracking-tight">Let's get started</h2>
+            <p className="text-gray-600 text-lg">Fill out the form below and our team will get back to you shortly.</p>
           </div>
           <form onSubmit={handleFormSubmit} className="space-y-6" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -173,7 +173,7 @@ function App() {
 
       {/* Footer */}
       <footer className="bg-brand-gray border-t border-gray-300">
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto px-6 lg:px-12 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-y-12 gap-x-8 mb-16 lg:mb-24">
             <div className="md:col-span-2">
               <div className="flex flex-col items-start leading-none font-heading select-none mb-8">

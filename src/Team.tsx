@@ -107,11 +107,11 @@ export default function Team() {
   }, []);
 
   return (
-    <div className="pt-32 pb-24 lg:pt-48 lg:pb-32 max-w-7xl lg:max-w-[90rem] mx-auto px-6">
+    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
       <div className="mb-16 lg:mb-24 team-fade-up max-w-4xl">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-4">OUR PEOPLE</h3>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 lg:mb-12 font-heading tracking-tight">Meet the Team</h1>
-        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-3xl">
+        <h1 className="text-5xl md:text-7xl font-light mb-8 font-heading tracking-tight">Meet the Team</h1>
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl">
           The minds behind First Generation Homes. Our leadership team brings decades of experience in real estate development, construction management, and architectural design.
         </p>
       </div>

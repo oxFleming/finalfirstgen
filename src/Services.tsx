@@ -53,10 +53,10 @@ export default function Services() {
   );
 
   return (
-    <div className="pt-32 pb-24 lg:pt-48 lg:pb-32 max-w-7xl lg:max-w-[90rem] mx-auto px-6">
+    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
       <div className="max-w-4xl">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-6 services-fade-up">SERVICES</h3>
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light leading-tight mb-12 font-heading tracking-tight services-fade-up">From blueprint to<br/>ribbon-cutting</h1>
+        <h1 className="text-5xl md:text-7xl font-light leading-tight mb-12 font-heading tracking-tight services-fade-up">From blueprint to<br/>ribbon-cutting</h1>
       </div>
       
       <div className="sticky top-[73px] bg-brand-gray z-40 py-4 border-b border-gray-300 flex gap-6 overflow-x-auto whitespace-nowrap text-sm font-medium mb-12 services-fade-up">
