@@ -387,30 +387,33 @@ export default function Home() {
       </section>
 
       {/* Our Team - Horizontal Scroll */}
-      <section ref={teamWrapperRef} className="bg-white pt-24 pb-32 overflow-hidden">
-        <div className="px-6 mb-16 fade-up max-w-[90rem] mx-auto">
-          <SectionHeader subtitle="LEADERSHIP" title={<>Meet the <Highlight>Executives</Highlight></>} />
-        </div>
-        <div ref={teamContainerRef} className="flex gap-6 lg:gap-8 px-6 lg:px-12 w-max">
-          {[
-            { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
-            { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
-            { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
-            { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" }
-          ].map((exec, i) => (
-            <div key={i} className="w-[85vw] sm:w-[400px] lg:w-[450px] aspect-[4/5] relative group shrink-0 rounded-xl overflow-hidden shadow-xl">
-              <img src={`https://picsum.photos/seed/${exec.img}/800/1000`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
-                <h3 className="text-3xl font-heading mb-2">{exec.name}</h3>
-                <p className="text-brand-primary tracking-widest uppercase text-sm font-bold">{exec.role}</p>
+      <section ref={teamWrapperRef} className="bg-white pt-24 pb-24 lg:pt-32 lg:pb-32 overflow-hidden w-full relative">
+        <div className="w-full">
+          <div className="px-6 mb-8 lg:mb-10 fade-up max-w-7xl mx-auto w-full">
+            <h3 className="text-brand-primary text-[10px] font-bold tracking-widest uppercase mb-2">LEADERSHIP</h3>
+            <h2 className="text-3xl lg:text-4xl font-light leading-tight text-brand-dark">Meet the <Highlight>Executives</Highlight></h2>
+          </div>
+          <div ref={teamContainerRef} className="flex gap-4 lg:gap-5 px-6 lg:px-auto max-w-7xl mx-auto w-max lg:w-full">
+            {[
+              { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
+              { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
+              { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
+              { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" }
+            ].map((exec, i) => (
+              <div key={i} className="w-[80vw] sm:w-[240px] lg:w-[230px] xl:w-[250px] aspect-[4/5] relative group shrink-0 rounded-xl overflow-hidden shadow-lg">
+                <img src={`https://picsum.photos/seed/${exec.img}/800/1000`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
+                  <h3 className="text-lg font-heading mb-1">{exec.name}</h3>
+                  <p className="text-brand-primary tracking-widest uppercase text-[9px] font-bold leading-tight line-clamp-2">{exec.role}</p>
+                </div>
               </div>
-            </div>
-          ))}
-          {/* View All Button Card */}
-          <div className="w-[85vw] sm:w-[400px] lg:w-[450px] aspect-[4/5] flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-12 shadow-md">
-            <div className="text-center">
-              <h3 className="text-3xl font-heading mb-6 text-brand-dark">The Minds Behind the Vision</h3>
-              <Button onClick={() => handleNavigate('/team')}>View Full Team</Button>
+            ))}
+            {/* View All Button Card */}
+            <div className="w-[80vw] sm:w-[240px] lg:w-[230px] xl:w-[250px] aspect-[4/5] flex items-center justify-center shrink-0 bg-brand-gray rounded-xl p-6 shadow-md">
+              <div className="text-center">
+                <h3 className="text-lg font-heading mb-4 text-brand-dark">The Minds Behind the Vision</h3>
+                <Button onClick={() => handleNavigate('/team')}>View Full Team</Button>
+              </div>
             </div>
           </div>
         </div>
