@@ -106,7 +106,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex flex-col justify-center px-6 overflow-hidden bg-gray-900">
+      <section className="relative min-h-screen flex flex-col justify-center px-6 py-32 overflow-hidden bg-gray-900">
         <img 
           src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" 
           alt="Luxury Home Background" 
@@ -116,7 +116,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80"></div>
         
-        <div className="relative z-10 mt-20 fade-up max-w-7xl mx-auto w-full">
+        <div className="relative z-10 mt-20 lg:mt-32 fade-up max-w-7xl mx-auto w-full">
           <h1 className="text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] font-medium text-white leading-[1] mb-6 font-heading tracking-tight">
             We build<br />around <span className="italic font-light">you</span>
           </h1>
@@ -126,7 +126,7 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="absolute bottom-8 left-6 right-6 flex justify-between text-white/80 text-xs tracking-[0.2em] uppercase font-bold fade-up z-10">
+        <div className="absolute bottom-8 lg:bottom-12 left-6 right-6 lg:left-12 lg:right-12 flex justify-between text-white/80 text-xs tracking-[0.2em] uppercase font-bold fade-up z-10">
           <span>People</span>
           <span className="w-4 h-[1px] bg-white/50 my-auto"></span>
           <span>Principles</span>

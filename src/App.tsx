@@ -79,11 +79,11 @@ function App() {
       
       {/* Header */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSolid ? 'bg-white border-b border-gray-200 shadow-sm' : 'bg-transparent'}`}>
-        <div className="max-w-7xl lg:max-w-[90rem] mx-auto flex justify-between items-center px-6 py-4 md:py-6 lg:py-8 lg:px-12">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto flex justify-between items-center px-6 py-4 md:py-5 lg:py-4 lg:px-12">
           <Link to="/" onClick={() => handleNavClick('/')} className={`flex flex-col items-start leading-none font-heading select-none cursor-pointer transition-colors duration-300 ${headerSolid ? 'text-brand-dark' : 'text-white'}`}>
-            <span className="text-lg md:text-xl lg:text-2xl font-light tracking-[0.15em] uppercase">First</span>
-            <span className={`text-xl md:text-2xl lg:text-3xl font-bold tracking-tight uppercase transition-colors duration-300 ${headerSolid ? 'text-brand-primary' : 'text-white'}`}>Generation</span>
-            <span className={`text-[0.55rem] md:text-[0.60rem] lg:text-[0.7rem] font-medium tracking-[0.5em] uppercase mt-1 transition-colors duration-300 ${headerSolid ? 'text-gray-500' : 'text-white/80'}`}>Homes</span>
+            <span className="text-lg md:text-xl font-light tracking-[0.15em] uppercase">First</span>
+            <span className={`text-xl md:text-2xl font-bold tracking-tight uppercase transition-colors duration-300 ${headerSolid ? 'text-brand-primary' : 'text-white'}`}>Generation</span>
+            <span className={`text-[0.55rem] md:text-[0.60rem] font-medium tracking-[0.5em] uppercase mt-1 transition-colors duration-300 ${headerSolid ? 'text-gray-500' : 'text-white/80'}`}>Homes</span>
           </Link>
           
           <div className="hidden lg:flex items-center gap-12 text-sm font-medium tracking-widest uppercase">
