@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight, ArrowLeft, X } from 'lucide-react';
@@ -81,9 +82,20 @@ const projects: Project[] = [
 ];
 
 export default function Portfolio() {
-  const [activeFilter, setActiveFilter] = useState("All");
+  const location = useLocation();
+  const initialState = location.state as { category?: string } | null;
+  const [activeFilter, setActiveFilter] = useState(initialState?.category || "All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentModalImageIdx, setCurrentModalImageIdx] = useState(0);
+
+  useEffect(() => {
+    if (location.state && (location.state as any).category) {
+      setActiveFilter((location.state as any).category);
+    } else if (location.pathname === '/portfolio' && !location.state) {
+      // Optional: reset if explicitly navigated without state
+      // setActiveFilter("All"); 
+    }
+  }, [location]);
 
   const filteredProjects = projects.filter(p => activeFilter === "All" || p.category === activeFilter);
   const featuredProject = filteredProjects[0];
