@@ -107,16 +107,16 @@ export default function Team() {
   }, []);
 
   return (
-    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
-      <div className="mb-16 team-fade-up">
+    <div className="pt-32 pb-24 lg:pt-48 lg:pb-32 max-w-7xl lg:max-w-[90rem] mx-auto px-6">
+      <div className="mb-16 lg:mb-24 team-fade-up max-w-4xl">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-4">OUR PEOPLE</h3>
-        <h1 className="text-5xl md:text-7xl font-light mb-8 font-heading">Meet the Team</h1>
-        <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 lg:mb-12 font-heading tracking-tight">Meet the Team</h1>
+        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed max-w-3xl">
           The minds behind First Generation Homes. Our leadership team brings decades of experience in real estate development, construction management, and architectural design.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-12">
         {teamMembers.map((member, i) => (
           <div 
             key={i} 
@@ -139,12 +139,12 @@ export default function Team() {
 
       {/* Team Member Modal */}
       {selectedMember && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 lg:p-12">
           <div 
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setSelectedMember(null)}
           ></div>
-          <div className="relative bg-white w-full max-w-3xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
+          <div className="relative bg-white w-full max-w-3xl lg:max-w-5xl rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] lg:max-h-[80vh]">
             <button 
               onClick={() => setSelectedMember(null)}
               className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-md rounded-full text-brand-dark hover:text-brand-primary hover:bg-white transition-colors"
@@ -159,10 +159,10 @@ export default function Team() {
                 referrerPolicy="no-referrer" 
               />
             </div>
-            <div className="p-6 md:p-8 overflow-y-auto w-full">
+            <div className="p-6 md:p-8 lg:p-12 overflow-y-auto w-full">
               <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-2">Team Member</h3>
-              <h2 className="text-3xl font-heading mb-2">{selectedMember.name}</h2>
-              <p className="text-gray-500 font-medium text-xs uppercase tracking-widest mb-6 pb-6 border-b border-gray-200">
+              <h2 className="text-3xl lg:text-5xl font-heading mb-2">{selectedMember.name}</h2>
+              <p className="text-gray-500 font-medium text-xs lg:text-sm uppercase tracking-widest mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-gray-200">
                 {selectedMember.role}
               </p>
               <div className="text-base text-gray-700 leading-relaxed space-y-4">

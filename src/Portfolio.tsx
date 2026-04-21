@@ -124,11 +124,11 @@ export default function Portfolio() {
   }, [activeFilter]);
 
   return (
-    <div className="pt-32 pb-24 max-w-7xl mx-auto px-6">
-      <div className="mb-12 portfolio-fade-up">
+    <div className="pt-32 pb-24 lg:pt-48 lg:pb-32 max-w-7xl lg:max-w-[90rem] mx-auto px-6">
+      <div className="mb-12 lg:mb-20 portfolio-fade-up max-w-4xl">
         <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-4">OUR WORK</h3>
-        <h1 className="text-5xl md:text-7xl font-light mb-8 font-heading">Portfolio</h1>
-        <p className="text-lg text-gray-700 leading-relaxed mb-10">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8 lg:mb-12 font-heading tracking-tight">Portfolio</h1>
+        <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-10">
           From modern coastal retreats to sprawling mountain estates, our portfolio offers a swift yet in-depth look at our team's expertise, the enduring quality of our work, and our commitment to details that reflect the <span className="bg-brand-primary text-white px-1">vision of our clients.</span> Explore our custom home portfolio below.
         </p>
 
@@ -191,7 +191,7 @@ export default function Portfolio() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-24">
         {remainingProjects.map(project => (
           <div 
             key={project.id} 
@@ -239,7 +239,7 @@ export default function Portfolio() {
           />
           
           {/* Modal Content */}
-          <div className="bg-white w-full max-w-4xl h-[85vh] md:h-[600px] relative z-10 shadow-2xl overflow-hidden rounded-xl flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-300">
+          <div className="bg-white w-full max-w-4xl lg:max-w-6xl h-[85vh] md:h-[600px] lg:h-[700px] relative z-10 shadow-2xl overflow-hidden rounded-xl flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-300">
             
             <button 
               onClick={() => setSelectedProject(null)} 

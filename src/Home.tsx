@@ -117,7 +117,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black/80"></div>
         
         <div className="relative z-10 mt-20 fade-up max-w-7xl mx-auto w-full">
-          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-medium text-white leading-[1.1] mb-6 font-heading">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl 2xl:text-[10rem] font-medium text-white leading-[1] mb-6 font-heading tracking-tight">
             We build<br />around <span className="italic font-light">you</span>
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-10 font-light">Client Focused. Community First.</p>
@@ -136,8 +136,8 @@ export default function Home() {
       </section>
 
       {/* Who We Are */}
-      <section className="px-6 py-24 bg-brand-gray">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="px-6 py-24 lg:py-32 bg-brand-gray">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           <div>
             <SectionHeader 
               subtitle="WHO WE ARE" 
@@ -145,7 +145,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-10 fade-up">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-10 fade-up max-w-2xl">
               First Generation Homes LLC is a U.S.-based real estate development and construction company headquartered in Chicago, Illinois. Operating as part of the broader FGIP ecosystem, we focus on residential construction, renovation, and development projects while also supporting international real estate initiatives.
             </p>
             <div className="fade-up">
@@ -156,8 +156,8 @@ export default function Home() {
       </section>
 
       {/* Video Placeholder */}
-      <section className="px-6 pb-24 bg-brand-gray">
-        <div className="max-w-7xl mx-auto relative aspect-video rounded-sm overflow-hidden fade-up">
+      <section className="px-6 pb-24 lg:pb-32 bg-brand-gray">
+        <div className="max-w-7xl mx-auto relative aspect-video rounded-sm overflow-hidden fade-up shadow-2xl">
           <img src="https://picsum.photos/seed/home-video/800/450" alt="Video thumbnail" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <button className="w-20 h-20 rounded-full border-2 border-white/50 flex items-center justify-center backdrop-blur-sm hover:bg-white/10 transition-colors">
@@ -168,11 +168,11 @@ export default function Home() {
       </section>
 
       {/* Our Mission */}
-      <section className="px-6 py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="order-2 lg:order-1 relative h-[500px] lg:h-[600px] fade-up">
-            <img src="https://picsum.photos/seed/home-team1/600/800" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[500px] object-cover rounded-sm absolute left-0 top-0" referrerPolicy="no-referrer" />
-            <img src="https://picsum.photos/seed/home-team2/600/400" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[300px] object-cover rounded-sm absolute right-0 bottom-0 border-4 border-white shadow-xl" referrerPolicy="no-referrer" />
+      <section className="px-6 py-24 lg:py-32">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="order-2 lg:order-1 relative h-[500px] lg:h-[700px] fade-up">
+            <img src="https://picsum.photos/seed/home-team1/800/1000" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[550px] object-cover rounded-sm absolute left-0 top-0 shadow-lg" referrerPolicy="no-referrer" />
+            <img src="https://picsum.photos/seed/home-team2/800/600" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[350px] object-cover rounded-sm absolute right-0 bottom-0 border-[8px] border-white shadow-2xl z-10" referrerPolicy="no-referrer" />
           </div>
           <div className="order-1 lg:order-2">
             <SectionHeader 
@@ -245,12 +245,12 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section className="px-6 py-24 bg-brand-gray">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-light text-brand-primary mb-6 fade-up font-heading">Featured Projects</h2>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed fade-up">
+      <section className="px-6 py-24 lg:py-32 bg-brand-gray">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 lg:mb-32">
+            <div className="max-w-3xl">
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-light text-brand-primary mb-6 fade-up font-heading tracking-tight">Featured Projects</h2>
+              <p className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed fade-up">
                 Every distinct home in our diverse portfolio represents one uncommon commitment: Our determination to make your vision, experience and satisfaction the top priority. When you put people first, results follow—and these projects speak for themselves.
               </p>
             </div>
@@ -286,16 +286,16 @@ export default function Home() {
               style={{ top: '100px' }}
               onClick={() => handleNavigate('/portfolio')}
             >
-              <div className="border-t border-gray-300 pt-8 pb-16">
-                <h3 className="text-3xl md:text-4xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
-                <p className="text-gray-600 mb-4 text-lg">{proj.loc}</p>
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+              <div className="border-t border-gray-300 pt-8 pb-16 lg:pt-12 lg:pb-24">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-1 transition-colors duration-300 font-heading group-[.is-active]:text-[#D32F2F] group-hover:text-[#D32F2F]">{proj.title}</h3>
+                <p className="text-gray-600 mb-6 lg:mb-8 text-lg lg:text-xl">{proj.loc}</p>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 lg:mb-12 gap-4">
                   <span className="inline-block border border-gray-300 bg-gray-50 text-gray-500 text-sm px-3 py-1 rounded-sm uppercase tracking-wider">{proj.tag}</span>
                   <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center transition-colors duration-300 group-[.is-active]:border-[#D32F2F] group-[.is-active]:text-[#D32F2F] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F] shrink-0">
                     <ArrowRight className="w-6 h-6" />
                   </div>
                 </div>
-                <div className="w-full aspect-[16/9] overflow-hidden relative">
+                <div className="w-full aspect-[16/9] lg:aspect-[21/9] overflow-hidden relative rounded-xl shadow-lg">
                   <img 
                     src={proj.img} 
                     alt={proj.title} 
@@ -311,41 +311,43 @@ export default function Home() {
       </section>
 
       {/* Our Reach (Moved Down) */}
-      <section className="px-6 py-24 bg-white border-t border-gray-300 mt-12">
-        <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR REACH</h3>
-        <div className="border-t border-gray-300 fade-up">
-          <AccordionItem 
-            title="USA" 
-            content="Headquartered in Chicago, Illinois, we deliver premium residential construction, renovation, and development projects across the United States, adhering to the highest standards of quality and modern lifestyle demands."
-            isOpen={activeReachAccordion === 0}
-            onClick={() => setActiveReachAccordion(activeReachAccordion === 0 ? null : 0)}
-          />
-          <AccordionItem 
-            title="Europe" 
-            content="Our European operations focus on strategic real estate initiatives, bringing our expertise in design, construction management, and premium finishing products to select international markets."
-            isOpen={activeReachAccordion === 1}
-            onClick={() => setActiveReachAccordion(activeReachAccordion === 1 ? null : 1)}
-          />
-          <AccordionItem 
-            title="Africa" 
-            content="We support international real estate development across Africa, leveraging the broader FGIP ecosystem to provide strategic expertise in residential development planning and infrastructure."
-            isOpen={activeReachAccordion === 2}
-            onClick={() => setActiveReachAccordion(activeReachAccordion === 2 ? null : 2)}
-          />
+      <section className="px-6 py-24 lg:py-32 bg-white border-t border-gray-300 mt-12">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
+          <h3 className="text-brand-primary text-xs font-bold tracking-widest uppercase mb-10">OUR REACH</h3>
+          <div className="border-t border-gray-300 fade-up">
+            <AccordionItem 
+              title="USA" 
+              content="Headquartered in Chicago, Illinois, we deliver premium residential construction, renovation, and development projects across the United States, adhering to the highest standards of quality and modern lifestyle demands."
+              isOpen={activeReachAccordion === 0}
+              onClick={() => setActiveReachAccordion(activeReachAccordion === 0 ? null : 0)}
+            />
+            <AccordionItem 
+              title="Europe" 
+              content="Our European operations focus on strategic real estate initiatives, bringing our expertise in design, construction management, and premium finishing products to select international markets."
+              isOpen={activeReachAccordion === 1}
+              onClick={() => setActiveReachAccordion(activeReachAccordion === 1 ? null : 1)}
+            />
+            <AccordionItem 
+              title="Africa" 
+              content="We support international real estate development across Africa, leveraging the broader FGIP ecosystem to provide strategic expertise in residential development planning and infrastructure."
+              isOpen={activeReachAccordion === 2}
+              onClick={() => setActiveReachAccordion(activeReachAccordion === 2 ? null : 2)}
+            />
+          </div>
         </div>
       </section>
 
       {/* Large Image */}
-      <section className="w-full h-[70vh]">
-        <img src="https://picsum.photos/seed/home-crane/1200/800" alt="Construction site" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+      <section className="w-full h-[70vh] lg:h-[80vh]">
+        <img src="https://picsum.photos/seed/home-crane/2400/1200" alt="Construction site" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </section>
 
       {/* Building for the best */}
-      <section className="px-6 py-24 text-center">
-        <h2 className="text-4xl md:text-5xl font-light mb-6 fade-up font-heading">
+      <section className="px-6 py-24 lg:py-48 text-center max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl font-light mb-6 lg:mb-10 fade-up font-heading tracking-tight">
           Building for the <Highlight>best</Highlight>
         </h2>
-        <p className="text-lg text-gray-600 max-w-md mx-auto fade-up">
+        <p className="text-lg lg:text-2xl text-gray-600 max-w-md lg:max-w-2xl mx-auto fade-up">
           Our passion is building homes, improving communities, and growing relationships.
         </p>
       </section>
@@ -362,22 +364,24 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="px-6 py-32 bg-gray-200 text-center">
-        <p className="text-3xl md:text-4xl font-light text-brand-primary leading-tight mb-10 fade-up font-heading">
-          "We truly appreciate your commitment on this project. I wanted to acknowledge the satisfaction on our remodel. I must give a 100% satisfied mark as you not only finished the job early and under budget, but with great sub-contractors and excellent workmanship. The job was done very efficiently and timely."
-        </p>
-        <div className="fade-up">
-          <p className="font-medium text-lg">Raja Bilal</p>
-          <p className="text-gray-600">CEO Focus with Raja</p>
+      <section className="px-6 py-32 lg:py-48 bg-gray-200 text-center">
+        <div className="max-w-7xl lg:max-w-[90rem] mx-auto">
+          <p className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-brand-primary leading-tight mb-10 lg:mb-16 fade-up font-heading tracking-tight max-w-6xl mx-auto">
+            "We truly appreciate your commitment on this project. I wanted to acknowledge the satisfaction on our remodel. I must give a 100% satisfied mark as you not only finished the job early and under budget, but with great sub-contractors and excellent workmanship. The job was done very efficiently and timely."
+          </p>
+          <div className="fade-up">
+            <p className="font-medium text-lg lg:text-xl">Raja Bilal</p>
+            <p className="text-gray-600 lg:text-lg">CEO Focus with Raja</p>
+          </div>
         </div>
       </section>
 
       {/* Our Team - Horizontal Scroll */}
-      <section ref={teamWrapperRef} className="bg-white py-24 overflow-hidden">
-        <div className="px-6 mb-12 fade-up">
+      <section ref={teamWrapperRef} className="bg-white py-24 lg:py-32 overflow-hidden">
+        <div className="px-6 mb-12 lg:mb-16 fade-up max-w-7xl lg:max-w-[90rem] mx-auto">
           <SectionHeader subtitle="LEADERSHIP" title={<>Meet the <Highlight>Executives</Highlight></>} />
         </div>
-        <div ref={teamContainerRef} className="flex gap-8 px-6 w-max h-[60vh] min-h-[400px]">
+        <div ref={teamContainerRef} className="flex gap-8 px-6 lg:px-12 w-max h-[60vh] min-h-[400px]">
           {[
             { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
             { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
