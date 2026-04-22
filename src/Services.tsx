@@ -59,14 +59,14 @@ export default function Services() {
         <h1 className="text-5xl md:text-7xl font-light leading-tight mb-12 font-heading tracking-tight services-fade-up">From blueprint to<br/>ribbon-cutting</h1>
       </div>
       
-      <div className="sticky top-[73px] bg-brand-gray z-40 py-4 border-b border-gray-300 flex gap-6 overflow-x-auto whitespace-nowrap text-sm font-medium mb-12 services-fade-up">
+      <div className="sticky top-[73px] bg-white/40 backdrop-blur-2xl z-40 py-4 border-b border-white/30 flex gap-6 overflow-x-auto whitespace-nowrap text-sm font-medium mb-12 services-fade-up px-4 rounded-xl shadow-sm">
         <a href="#custom-homes" className="hover:text-brand-primary transition-colors">Custom Homes</a>
         <a href="#renovation" className="hover:text-brand-primary transition-colors">Renovation</a>
         <a href="#development" className="hover:text-brand-primary transition-colors">Development</a>
         <a href="#materials" className="hover:text-brand-primary transition-colors">Materials</a>
       </div>
 
-      <div className="text-lg text-gray-700 leading-relaxed space-y-8 mb-16 services-fade-up">
+      <div className="text-lg text-gray-700 leading-relaxed space-y-8 mb-16 services-fade-up bg-white/30 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-sm">
         <p>When you bring our team to the table, we bring your vision to life with creativity, clarity, and accountability. Operating as part of the broader FGIP ecosystem, First Generation Homes prides itself on our ability to be a one-stop-shop, <Highlight>guiding you</Highlight> from sketch to stunning final result.</p>
         <p>We solve problems others can't or won't with creativity. We build <Highlight>lasting relationships</Highlight> with candor. And we specialize in details that reflect the modern lifestyle and market demands, both in the US and internationally.</p>
       </div>
@@ -144,9 +144,9 @@ export default function Services() {
         <h3 className="text-3xl md:text-5xl font-light leading-tight mb-16 font-heading">
           We join the customer's journey, take on their goals, guide them through the design phase and deliver a building that will best <Highlight>accomplish those goals.</Highlight>
         </h3>
-        <div className="relative h-[600px]">
-          <img src="https://picsum.photos/seed/ve-crane/800/1000" alt="Workers with crane" className="w-2/3 h-[500px] object-cover rounded-sm absolute right-0 top-0" referrerPolicy="no-referrer" />
-          <img src="https://picsum.photos/seed/ve-team/600/400" alt="Team photo" className="w-2/3 h-[300px] object-cover rounded-sm absolute left-0 bottom-0 border-8 border-brand-gray shadow-2xl" referrerPolicy="no-referrer" />
+        <div className="relative h-[600px] mt-12 bg-white/30 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-xl">
+          <img src="https://picsum.photos/seed/ve-crane/800/1000" alt="Workers with crane" className="w-2/3 h-[450px] object-cover rounded-xl absolute right-8 top-8" referrerPolicy="no-referrer" />
+          <img src="https://picsum.photos/seed/ve-team/600/400" alt="Team photo" className="w-2/3 h-[300px] object-cover rounded-xl absolute left-8 bottom-8 border-8 border-white/40 shadow-2xl backdrop-blur-sm" referrerPolicy="no-referrer" />
         </div>
       </div>
 

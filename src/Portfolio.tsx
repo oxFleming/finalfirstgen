@@ -165,12 +165,12 @@ export default function Portfolio() {
       </div>
 
       {featuredProject && (
-        <div className="mb-16 portfolio-fade-up">
+        <div className="mb-16 portfolio-fade-up relative z-10">
           <div 
-            className="group cursor-pointer block relative overflow-hidden rounded-sm"
+            className="group cursor-pointer block relative overflow-hidden rounded-3xl shadow-xl bg-white/40 backdrop-blur-md border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
             onClick={() => openProject(featuredProject)}
           >
-            <div className="overflow-hidden relative">
+            <div className="overflow-hidden relative m-4 rounded-2xl shadow-inner border border-white/20">
               <img 
                 src={featuredProject.image} 
                 alt={featuredProject.title} 
@@ -178,16 +178,16 @@ export default function Portfolio() {
                 referrerPolicy="no-referrer" 
               />
               {featuredProject.comingSoon && (
-                <div className="absolute top-6 right-6 bg-brand-dark/90 backdrop-blur-sm text-white px-4 py-2 font-bold tracking-widest text-sm uppercase shadow-xl rounded-sm z-10 pointer-events-none">
+                <div className="absolute top-6 right-6 bg-brand-dark/90 backdrop-blur-sm text-white px-4 py-2 font-bold tracking-widest text-sm uppercase shadow-xl rounded-lg z-10 pointer-events-none">
                   Coming soon in 2026
                 </div>
               )}
             </div>
-            <div className="bg-brand-primary text-white p-6 flex justify-between items-center transition-colors hover:bg-brand-dark">
+            <div className="bg-brand-primary p-6 md:p-8 flex justify-between items-center transition-colors group-hover:bg-brand-dark mx-4 mb-4 rounded-2xl text-white shadow-lg border border-brand-primary/50">
               <div className="flex-1 pr-6">
-                <h2 className="text-3xl font-medium mb-1">{featuredProject.title}</h2>
-                <div className="flex items-center gap-2 mb-3 text-white/80 text-sm">
-                  <span className="border border-white/40 rounded-full px-2 py-0.5 text-xs">{featuredProject.category}</span>
+                <h2 className="text-3xl font-medium mb-1 drop-shadow-sm font-heading">{featuredProject.title}</h2>
+                <div className="flex items-center gap-2 mb-3 text-white/90 text-sm font-medium">
+                  <span className="border border-white/40 bg-white/10 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs">{featuredProject.category}</span>
                   <span>•</span>
                   <span>{featuredProject.location}</span>
                 </div>
@@ -195,7 +195,7 @@ export default function Portfolio() {
                   {featuredProject.description}
                 </p>
               </div>
-              <div className="border border-white rounded-full p-3 group-hover:bg-white group-hover:text-brand-primary transition-colors shrink-0">
+              <div className="border border-white rounded-full p-4 hover:bg-white text-white group-hover:text-brand-dark bg-transparent transition-all shrink-0">
                 <ArrowRight className="w-6 h-6" />
               </div>
             </div>
@@ -203,38 +203,38 @@ export default function Portfolio() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 mb-24 relative z-10">
         {remainingProjects.map(project => (
           <div 
             key={project.id} 
-            className="portfolio-fade-up group cursor-pointer"
+            className="portfolio-fade-up group cursor-pointer bg-white/40 backdrop-blur-md p-4 rounded-3xl border border-white/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
             onClick={() => openProject(project)}
           >
-            <div className="relative overflow-hidden rounded-sm">
+            <div className="relative overflow-hidden rounded-2xl shadow-inner mb-2">
               <img src={project.image} alt={project.title} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
-              <div className="absolute bottom-0 right-0 bg-brand-primary p-4 text-white group-hover:bg-brand-dark transition-colors z-20">
+              <div className="absolute bottom-0 right-0 bg-brand-primary p-4 text-white group-hover:bg-brand-dark transition-colors z-20 rounded-tl-2xl">
                 <ArrowRight className="w-6 h-6" />
               </div>
               {project.comingSoon && (
-                <div className="absolute top-4 right-4 bg-brand-dark/90 backdrop-blur-sm text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase shadow-md rounded-sm z-20 pointer-events-none">
+                <div className="absolute top-4 right-4 bg-brand-dark/90 backdrop-blur-sm text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase shadow-md rounded-lg z-20 pointer-events-none">
                   Coming soon in 2026
                 </div>
               )}
             </div>
-            <div className="py-5">
+            <div className="py-4 px-2">
               <h3 className="text-2xl font-medium text-brand-dark mb-2 group-hover:text-brand-primary transition-colors">{project.title}</h3>
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-xs text-gray-500 border border-gray-300 rounded-full px-2 py-0.5 inline-block">
+                <span className="text-xs text-gray-700 border border-brand-primary/20 bg-white/50 backdrop-blur-sm rounded-full px-2 py-0.5 inline-block font-medium shadow-sm">
                   {project.category}
                 </span>
                 <span className="text-gray-400 text-xs">•</span>
-                <p className="text-gray-500 text-sm">{project.location}</p>
+                <p className="text-gray-700 font-medium text-sm">{project.location}</p>
               </div>
-              <p className="text-gray-600 text-base mb-4 line-clamp-3 leading-relaxed pr-4">
+              <p className="text-gray-800 text-base mb-4 line-clamp-3 leading-relaxed pr-2 font-medium">
                 {project.description}
               </p>
-              <div className="text-brand-primary text-sm font-medium flex items-center gap-1 group-hover:underline">
-                View Project Details <ArrowRight className="w-4 h-4" />
+              <div className="text-brand-primary text-sm font-bold flex items-center gap-1 group-hover:underline uppercase tracking-wide">
+                View Details <ArrowRight className="w-4 h-4" />
               </div>
             </div>
           </div>

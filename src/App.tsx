@@ -75,10 +75,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-gray font-sans selection:bg-brand-primary selection:text-white">
+    <div className="min-h-screen bg-transparent font-sans selection:bg-brand-primary selection:text-white relative">
       
+      {/* Global Colorful Mesh Background */}
+      <div className="bg-mesh">
+        <div className="blob blob-1"></div>
+        <div className="blob blob-2"></div>
+        <div className="blob blob-3"></div>
+        <div className="blob blob-4"></div>
+      </div>
+
       {/* Header */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSolid ? 'bg-white shadow-sm border-b border-gray-100' : 'bg-transparent'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerSolid ? 'bg-white/70 backdrop-blur-2xl shadow-sm border-b border-white/50' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4 lg:py-5 lg:px-12">
           <Link to="/" onClick={() => handleNavClick('/')} className={`flex flex-col items-start leading-none font-heading select-none cursor-pointer transition-colors duration-300 ${headerSolid ? 'text-brand-dark' : 'text-white'}`}>
             <span className="text-base md:text-lg font-light tracking-[0.15em] uppercase">First</span>
@@ -107,16 +115,16 @@ function App() {
       </Routes>
 
       {/* Footer CTA & Contact Form */}
-      <section className="px-6 py-24 border-t border-gray-300 bg-white" id="contact-form-section">
-        <div className="max-w-3xl mx-auto">
+      <section className="px-6 py-24 border-t border-white/40 bg-white/30 backdrop-blur-3xl relative z-10" id="contact-form-section">
+        <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur-2xl p-8 lg:p-12 rounded-[2rem] shadow-2xl border border-white/50">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-4xl lg:text-5xl font-heading mb-4 text-brand-dark tracking-tight">Let's get started</h2>
-            <p className="text-gray-600 text-lg">Fill out the form below and our team will get back to you shortly.</p>
+            <p className="text-gray-700 text-lg">Fill out the form below and our team will get back to you shortly.</p>
           </div>
           <form onSubmit={handleFormSubmit} className="space-y-6" noValidate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-800 mb-1">Name *</label>
                 <input 
                   type="text" 
                   id="name" 
@@ -125,13 +133,13 @@ function App() {
                     setFormData({...formData, name: e.target.value});
                     if (formErrors.name) setFormErrors({...formErrors, name: ''});
                   }}
-                  className={`w-full px-4 py-3 rounded-md border ${formErrors.name ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                  className={`w-full px-4 py-3 rounded-md border ${formErrors.name ? 'border-red-500 bg-red-50' : 'border-white/60 bg-white/50'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors shadow-sm`}
                   placeholder="Your Name"
                 />
                 {formErrors.name && <p className="text-red-500 text-xs mt-1">{formErrors.name}</p>}
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-1">Email *</label>
                 <input 
                   type="email" 
                   id="email" 
@@ -140,14 +148,14 @@ function App() {
                     setFormData({...formData, email: e.target.value});
                     if (formErrors.email) setFormErrors({...formErrors, email: ''});
                   }}
-                  className={`w-full px-4 py-3 rounded-md border ${formErrors.email ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                  className={`w-full px-4 py-3 rounded-md border ${formErrors.email ? 'border-red-500 bg-red-50' : 'border-white/60 bg-white/50'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors shadow-sm`}
                   placeholder="your@email.com"
                 />
                 {formErrors.email && <p className="text-red-500 text-xs mt-1">{formErrors.email}</p>}
               </div>
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message *</label>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-800 mb-1">Message *</label>
               <textarea 
                 id="message" 
                 rows={4}
@@ -156,13 +164,13 @@ function App() {
                   setFormData({...formData, message: e.target.value});
                   if (formErrors.message) setFormErrors({...formErrors, message: ''});
                 }}
-                className={`w-full px-4 py-3 rounded-md border ${formErrors.message ? 'border-red-500 bg-red-50' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors`}
+                className={`w-full px-4 py-3 rounded-md border ${formErrors.message ? 'border-red-500 bg-red-50' : 'border-white/60 bg-white/50'} focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-colors shadow-sm`}
                 placeholder="How can we help you?"
               ></textarea>
               {formErrors.message && <p className="text-red-500 text-xs mt-1">{formErrors.message}</p>}
             </div>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-              <button type="submit" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-3 rounded-md font-medium hover:bg-brand-dark transition-colors flex items-center justify-center gap-2">
+              <button type="submit" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-3 rounded-md font-medium hover:bg-brand-dark transition-colors flex items-center justify-center gap-2 shadow-md lg:text-lg">
                 Send Message <ArrowRight className="w-4 h-4" />
               </button>
               {formStatus && <p className="text-green-600 font-medium">{formStatus}</p>}
@@ -172,7 +180,7 @@ function App() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-[#fafafa] border-t border-gray-200 text-brand-dark font-sans flex flex-col justify-between h-auto lg:h-[calc(100vh-86px)] min-h-[calc(100vh-86px)] pt-10 lg:pt-8 pb-3 md:pb-5 relative z-10 overflow-hidden">
+      <footer className="w-full bg-white/40 backdrop-blur-3xl border-t border-white/50 text-brand-dark font-sans flex flex-col justify-between h-auto lg:h-[calc(100vh-86px)] min-h-[calc(100vh-86px)] pt-10 lg:pt-8 pb-3 md:pb-5 relative z-10 overflow-hidden shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
         <div className="max-w-[85rem] mx-auto px-6 lg:px-12 w-full flex-1 flex flex-col justify-between h-full">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 flex-1 min-h-0">

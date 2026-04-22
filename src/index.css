@@ -48,3 +48,67 @@ h1, h2, h3, h4, h5, h6, .font-heading {
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+/* Colorful Animated Background Blobs */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  33% { transform: translateY(-50px) scale(1.1); }
+  66% { transform: translateY(50px) scale(0.9); }
+}
+
+.bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: #fdfbfb; /* Light clean base */
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: float 20s infinite ease-in-out alternate;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: #ff9a9e; /* Pinkish red */
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 600px;
+  height: 600px;
+  background: #fecfef; /* Light pinkish purple */
+  top: 40%;
+  right: -200px;
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  width: 450px;
+  height: 450px;
+  background: #a1c4fd; /* Soft blue */
+  bottom: -150px;
+  left: 20%;
+  animation-delay: -10s;
+}
+
+.blob-4 {
+  width: 400px;
+  height: 400px;
+  background: #e2d1c3; /* warm tone */
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: -15s;
+}
