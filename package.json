@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
+    "dev": "tsx server.ts",
+    "start": "node --import tsx server.ts",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
@@ -30,6 +31,7 @@
     "react-dom": "^19.0.0",
     "react-fitty": "^1.0.1",
     "react-router-dom": "^7.14.1",
+    "resend": "^6.12.2",
     "slate": "^0.124.0",
     "slate-react": "^0.124.0",
     "three": "^0.183.2",

@@ -251,7 +251,7 @@ export default function Portfolio() {
           />
           
           {/* Modal Content */}
-          <div className="bg-white w-full max-w-4xl lg:max-w-6xl h-[85vh] md:h-[600px] lg:h-[700px] relative z-10 shadow-2xl overflow-hidden rounded-xl flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-300">
+          <div className="bg-white w-full max-w-4xl lg:max-w-6xl h-[90vh] md:h-[80vh] max-h-[800px] relative z-10 shadow-2xl overflow-hidden rounded-xl flex flex-col md:flex-row animate-in fade-in zoom-in-95 duration-300">
             
             <button 
               onClick={() => setSelectedProject(null)} 
@@ -323,24 +323,24 @@ export default function Portfolio() {
             </div>
 
             {/* Right Side: Details */}
-            <div className="w-full md:w-1/2 flex-1 md:h-full flex flex-col p-6 sm:p-8 md:p-12 overflow-y-auto bg-white/95">
-              <div className="flex flex-wrap items-center gap-3 mb-4 text-xs font-bold tracking-widest text-gray-400 uppercase">
+            <div className="w-full md:w-1/2 flex-1 md:h-full flex flex-col p-6 sm:p-8 md:p-10 lg:p-12 overflow-y-auto min-h-0 bg-white">
+              <div className="flex flex-wrap items-center gap-3 mb-4 text-xs font-bold tracking-widest text-gray-400 uppercase shrink-0">
                 <span className="text-brand-primary">{selectedProject.category}</span>
                 <span>•</span>
                 <span>{selectedProject.location}</span>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-heading mb-6 text-brand-dark leading-tight">
+              <h2 className="text-3xl md:text-4xl font-heading mb-6 text-brand-dark leading-tight shrink-0">
                 {selectedProject.title}
               </h2>
               
               <div className="w-12 h-1 bg-brand-primary mb-6 flex-shrink-0"></div>
               
-              <div className="text-base text-gray-600 leading-relaxed whitespace-pre-wrap mb-8">
+              <div className="text-base text-gray-600 leading-relaxed whitespace-pre-wrap mb-8 flex-shrink-0">
                 {selectedProject.description}
               </div>
               
-              <div className="mt-auto pt-4 flex gap-4 text-sm font-medium border-t border-gray-100">
+              <div className="mt-auto pt-6 flex gap-4 text-sm font-medium border-t border-gray-100 shrink-0">
                 <div className="flex flex-col">
                   <span className="text-gray-400 text-xs uppercase tracking-wider mb-1">Status</span>
                   <span className="text-brand-dark">

@@ -18,7 +18,7 @@ function App() {
   const isHome = location.pathname === '/';
   const headerSolid = isScrolled || !isHome;
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let valid = true;
     const errors = { name: '', email: '', message: '' };
@@ -42,9 +42,27 @@ function App() {
     setFormErrors(errors);
 
     if (valid) {
-      setFormStatus('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus(''), 5000);
+      setFormStatus('Sending message...');
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setFormStatus('Message sent successfully!');
+          setFormData({ name: '', email: '', message: '' });
+          setTimeout(() => setFormStatus(''), 5000);
+        } else {
+          setFormStatus(result.error || 'Failed to send message.');
+        }
+      } catch (error) {
+        console.error(error);
+        setFormStatus('Failed to send message. Please try again.');
+      }
     }
   };
 
@@ -188,14 +206,13 @@ function App() {
              <div className="lg:col-span-4 flex flex-col justify-between pr-0 lg:pr-8 min-h-0 pb-2 mb-4 lg:mb-0">
                
                {/* Sketch Image */}
-               <div className="w-full relative opacity-80 mix-blend-multiply contrast-125 flex-1 min-h-[180px] max-h-[260px] lg:max-h-[320px] shrink-0 mb-6 lg:mb-8 mt-2 lg:mt-3">
-                 <img src="https://picsum.photos/seed/blueprint3/800/800" alt="Architectural Sketch" className="absolute inset-0 w-full h-full object-contain lg:object-left object-center grayscale" referrerPolicy="no-referrer" />
+               <div className="w-[calc(100%+3rem)] -mx-6 lg:mx-0 lg:w-full relative opacity-80 mix-blend-multiply contrast-125 flex-1 min-h-[220px] max-h-[260px] lg:max-h-[320px] shrink-0 mb-6 lg:mb-8 mt-2 lg:mt-3 lg:bg-transparent">
+                 <img src="https://picsum.photos/seed/blueprint3/800/800" alt="Architectural Sketch" className="absolute inset-0 w-full h-full object-cover lg:object-contain lg:object-left object-center grayscale" referrerPolicy="no-referrer" />
                </div>
 
                {/* Regional Contacts */}
                <div className="flex flex-col gap-1 text-[13px] md:text-[14px] font-light text-gray-800 shrink-0 text-center lg:text-left mt-4 lg:mt-0">
-                 <p>Upstate Region: <span className="text-gray-600">(312) 555-0198</span></p>
-                 <p>Coastal Region: <span className="text-gray-600">(713) 555-0145</span></p>
+                 <p>Direct Line: <span className="text-gray-600">+1 630 326 5117</span></p>
                  <a href="mailto:matthew.kalesanwo@fgipgroup.net" className="text-brand-primary font-medium hover:underline mt-0.5 text-[13px] xl:text-[14px]">matthew.kalesanwo@fgipgroup.net</a>
                </div>
              </div>
@@ -228,7 +245,7 @@ function App() {
 
                 {/* WhatsApp Button */}
                 <div className="flex-1 w-full flex flex-col justify-center items-center lg:items-start py-8 lg:py-2">
-                   <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 lg:py-2.5 rounded-full font-medium hover:bg-[#20bd5a] transition-colors shadow-sm text-[13px] lg:text-[14px]">
+                   <a href="https://wa.me/2347037412354" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 lg:py-2.5 rounded-full font-medium hover:bg-[#20bd5a] transition-colors shadow-sm text-[13px] lg:text-[14px]">
                       <MessageCircle className="w-4 h-4 lg:w-4 lg:h-4" />
                       Contact us on whatsapp now
                    </a>
@@ -287,7 +304,7 @@ function App() {
 
       {/* Floating WhatsApp Button */}
       <a 
-        href="https://wa.me/" 
+        href="https://wa.me/2347037412354" 
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-[200] bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
