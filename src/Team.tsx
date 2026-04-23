@@ -7,7 +7,7 @@ const teamMembers = [
   { 
     name: "Remy Okunbena", 
     role: "Managing Director, First Generation Homes LLC", 
-    img: "remy",
+    img: "/images/team-images/remy.png",
     bio: [
       "Remy Okunbena brings over two decades of progressive leadership in civil engineering, project development, and strategic operations. As Managing Director of First Generation Homes LLC, she leads the company’s mission to deliver innovative, affordable housing solutions with a focus on sustainability, precision, and long-term value.",
       "Holding a Bachelor’s Degree in Civil Engineering from Stanford University and an MBA from Harvard Business School, her career spans senior roles at top firms where she led large-scale developments.",
@@ -17,7 +17,7 @@ const teamMembers = [
   { 
     name: "Mathew Kalesanwo", 
     role: "VP, Revenue Growth & Business Development", 
-    img: "mathew", 
+    img: "/images/team-images/matthew.png", 
     bio: [
       "Matthew Kalesanwo is the Vice President of Revenue Growth and Business Development, a strategic builder, and a human-centered leader. His career has spanned continents and industries, but one principle guides it all: growth rooted in trust.",
       "With over $500M in revenue influenced and $10M in losses reversed, he has led global teams, built partnerships from the ground up, and turned complex challenges into clear, actionable wins. But numbers alone don’t define him. He believes in the power of emotional intelligence, follow-through, and the kind of leadership that listens before it leads.",
@@ -26,28 +26,55 @@ const teamMembers = [
     ] 
   },
   { 
+    name: "Olufolake Olumogba", 
+    role: "Director of Project Development & Infrastructure", 
+    img: "/images/team-images/olufolake.png", 
+    bio: [
+      "Olufolake is a chartered architect with over 30 years of design and development leadership across the UK and Africa. She is a member of the Royal Institute of British Architects (RIBA) and the Royal Incorporation of Architects in Scotland (RIAS), as well as an associate member of the Nigerian Institute of Architects (NIA).",
+      "Her expertise spans urban building design, landscape architecture, and interior design, having served as a consultant, designer, and project promoter across major international developments. At First Generation Homes LLC, she leads infrastructure delivery and project innovation, ensuring each development meets the highest standards of function, sustainability, and architectural distinction."
+    ] 
+  },
+  { 
+    name: "Arc. Sandra Airunugba", 
+    role: "Senior Architect and Supervisory Project Manager", 
+    img: "/images/team-images/sandra.jpeg", 
+    bio: [
+      "Sandra Airunugba is a distinguished Nigerian Architect and Interior Designer with over a decade of experience in shaping functional and aesthetic environments. As the CEO and Chief Architect of Flaux Architectures, she leverages her dual expertise to lead high-end real estate developments and innovative design projects across the country.",
+      "Sandra holds a Master’s degree in Architecture from Caleb University and a Master’s in Interior Design from the University of Ibadan, a combination that allows her to seamlessly bridge the gap between structural integrity and internal spatial harmony. Her professional standing is backed by her membership in the Nigerian Institute of Architects (NIA).",
+      "Currently serving as a Senior Architect and Project Manager for FGIP, Sandra’s career is marked by a proven track record in large-scale project execution. Prior to her entrepreneurial success with Flaux Architectures, she honed her technical leadership as a Project Architect for MRS Oil and Gas, where she managed complex infrastructure requirements. Her approach combines technical precision with a visionary eye for detail, making her a formidable force in Nigeria’s built environment."
+    ] 
+  },
+  { 
     name: "Uju Amazu", 
     role: "Chief Operating Officer", 
-    img: "uju", 
+    img: "/images/team-images/uju.png", 
     bio: [
       "Uju Amazu is an accomplished operations executive with over 20 years of leadership experience in P&L management, procurement, budgeting, and enterprise controls. As Chief Operating Officer at First Generation Homes LLC, she oversees the firm’s operational strategy, streamlining project execution, optimizing financial performance, and ensuring alignment across teams and markets.",
       "Her strengths in performance improvement, staff development, and operational governance have been instrumental in scaling high-growth initiatives and delivering cost-effective results. Uju holds a BA/BS in Business, blending deep financial acumen with a hands-on leadership style that fosters excellence and accountability throughout the organization."
     ] 
   },
   { 
-    name: "Olufolake Olumogba", 
-    role: "Director of Project Development & Infrastructure", 
-    img: "olufolake", 
+    name: "Gbemi Adebayo", 
+    role: "Head of Enterprise Solutions & IT", 
+    img: "/images/team-images/gbemi.png", 
     bio: [
-      "Olufolake is a chartered architect with over 30 years of design and development leadership across the UK and Africa. She is a member of the Royal Institute of British Architects (RIBA) and the Royal Incorporation of Architects in Scotland (RIAS), as well as an associate member of the Nigerian Institute of Architects (NIA).",
-      "Her expertise spans urban building design, landscape architecture, and interior design, having served as a consultant, designer, and project promoter across major international developments. At First Generation Homes LLC, she leads infrastructure delivery and project innovation, ensuring each development meets the highest standards of function, sustainability, and architectural distinction."
+      "Gbemi Adebayo brings over 12 years of deep expertise in business process automation, systems engineering, and enterprise data solutions. As Head of Enterprise Solutions & IT at First Generation Homes LLC, he leads the design and optimization of the company’s digital infrastructure, ensuring seamless connectivity between operations, analytics, and client-facing systems.",
+      "Certified as an Oracle and SQL Professional and a specialist in Cloudera Hadoop Data Management, Gbemi is instrumental in driving secure, scalable, and insight-driven platforms across the organization. His background spans database architecture, IT governance, and system integration, supporting innovation at the intersection of construction and technology.",
+      "He holds a B.Sc. in Computer Science from Olabisi Onabanjo University (OOU), combining a strong academic foundation with hands-on technical leadership to power the company’s digital transformation."
     ] 
   },
-  { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra", bio: ["More details coming soon."] },
+  { 
+    name: "Alade Abosede Mauyon", 
+    role: "FGIP Legal Counsel", 
+    img: "/images/team-images/shade.png", 
+    bio: [
+      "Alade Abosede is a partner at Silverhills Attorney and Solicitors and currently the lawyer/legal counsel to FGIP."
+    ] 
+  },
   { 
     name: "Taplong Lucy James", 
     role: "Legal & Compliance Specialist", 
-    img: "lucy", 
+    img: "/images/team-images/tapalong.jpeg", 
     bio: [
       "Taplong Lucy James is a legal and compliance professional with over five years of experience in regulatory compliance, contract management, and risk mitigation.",
       "She supports FGIP Legacy Luxury Estate by ensuring legally sound operations, accurate documentation, and adherence to regulatory standards across all project activities.",
@@ -55,35 +82,48 @@ const teamMembers = [
     ] 
   },
   { 
-    name: "Engr. Olaoye Sunday Joel", 
-    role: "Engineering", 
-    img: "olaoye", 
-    bio: [
-      "Engr. Olaoye Sunday Joel is a construction engineer with a Bachelor’s degree in Engineering, specializing in site supervision, quality control, and the safe, efficient delivery of roads, bridges, and building projects. He ensures seamless coordination between design and field execution, keeping every project on schedule, within budget, and compliant with engineering standards."
-    ] 
-  },
-  { name: "Engr. Azeez Opeyemi", role: "Engineering", img: "azeez", bio: ["More details coming soon."] },
-  { name: "Gbemi Adebayo", role: "Team Member", img: "gbemi", bio: ["More details coming soon."] },
-  { name: "Tope Makinde", role: "Team Member", img: "tope", bio: ["More details coming soon."] },
-  { 
-    name: "Adeoye Oluwamayokun Jude", 
-    role: "Team Member", 
-    img: "adeoye", 
-    bio: [
-      "Adeoye Oluwamayokun Jude is an accomplished architect with over 10 years of experience in design development, construction detailing, and large‑scale real estate projects. A graduate of YABATECH and Caleb University, he has delivered more than 500 residential, commercial, and mixed‑use designs across Nigeria. He currently leads design development at Interior Culture and is the Founder of MJ Design Studio. Jude brings a strong commitment to innovation, sustainability, and user‑focused architecture to the FGIP Legacy Estate."
-    ] 
-  },
-  { name: "Alade Abosede Mauyon", role: "Team Member", img: "alade", bio: ["More details coming soon."] },
-  { 
     name: "Omeri Titus Okechukwu", 
     role: "Procurement and Logistics Officer", 
-    img: "omeri", 
+    img: "/images/team-images/titus.png", 
     bio: [
       "Omeri Titus Okechukwu is a seasoned petroleum operations professional with over 17 years of experience in offshore cargo handling, STS operations, loss control, and terminal compliance.",
       "His background in supervising complex, high‑risk logistics environments brings strong operational discipline, safety leadership, and technical rigor to FGIP Legacy Luxury Estate.",
       "He holds a B.Eng. in Chemical Engineering and a Ship Survey Certification from the Maritime Training Academy, UK."
     ] 
   },
+  { 
+    name: "Adeoye Oluwamayokun Jude", 
+    role: "Lead Project Architect", 
+    img: "/images/team-images/jude.jpeg", 
+    bio: [
+      "Adeoye Oluwamayokun Jude is an accomplished architect with over 10 years of experience in design development, construction detailing, and large‑scale real estate projects. A graduate of YABATECH and Caleb University, he has delivered more than 500 residential, commercial, and mixed‑use designs across Nigeria. He currently leads design development at Interior Culture and is the Founder of MJ Design Studio. Jude brings a strong commitment to innovation, sustainability, and user‑focused architecture to the FGIP Legacy Estate."
+    ] 
+  },
+  { 
+    name: "Tope Makinde", 
+    role: "Geospatial Mapping Expert", 
+    img: "/images/team-images/tope.jpg", 
+    bio: [
+      "As the CEO and Managing Director of Geoinfotech, Tope Makinde leads the charge in bridging the gap between advanced location technology and sustainable development. With a strategic focus on Geo-Spatial Solution Deployment, he oversees the integration of Geographic Information Systems (GIS), Remote Sensing, and professional drone operations to solve complex industrial challenges.",
+      "Under his leadership, Geoinfotech delivers high-precision mapping and spatial data analysis that provide clients with critical business intelligence. Tope is dedicated to equipping organizations with the accurate data and competitive insights necessary to achieve their strategic goals through innovative engineering, topographic, and cadastral surveying."
+    ] 
+  },
+  { 
+    name: "Engr. Olaoye Sunday Joel", 
+    role: "Engineering", 
+    img: "/images/team-images/olaoye.png", 
+    bio: [
+      "Engr. Olaoye Sunday Joel is a construction engineer with a Bachelor’s degree in Engineering, specializing in site supervision, quality control, and the safe, efficient delivery of roads, bridges, and building projects. He ensures seamless coordination between design and field execution, keeping every project on schedule, within budget, and compliant with engineering standards."
+    ] 
+  },
+  { 
+    name: "Engr. Azeez Opeyemi", 
+    role: "Engineering", 
+    img: "/images/team-images/Azeez.jpeg", 
+    bio: [
+      "Engr. Azeez Opeyemi is a construction engineer specializing in site supervision, quality control, and the safe, efficient delivery of roads, bridges, and building projects. He ensures seamless coordination between design and field execution, keeping every project on schedule, within budget, and compliant with engineering standards."
+    ] 
+  }
 ];
 
 export default function Team() {

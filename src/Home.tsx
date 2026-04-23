@@ -107,12 +107,13 @@ export default function Home() {
     <main>
       {/* Hero Section */}
       <section className="relative h-screen min-h-[600px] flex flex-col justify-center px-6 overflow-hidden">
-        <img 
-          src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" 
-          alt="Luxury Home Background" 
+        <video 
+          src="/videos/hero.mp4" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          referrerPolicy="no-referrer"
-          crossOrigin="anonymous"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-[#9D84B7] via-[#ff9a9e] to-[#fecfef] opacity-20 mix-blend-multiply z-0"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/50 z-0"></div>
@@ -158,14 +159,15 @@ export default function Home() {
              {/* Floating Line attached to Image */}
              <div className="absolute top-8 lg:top-16 -left-6 lg:-left-12 w-16 lg:w-24 h-[2px] bg-brand-primary z-10 hidden md:block"></div>
              
-             <div className="relative aspect-[4/3] lg:aspect-video w-full shadow-lg group select-none overflow-hidden rounded-sm bg-gray-100">
-                <img src="https://picsum.photos/seed/contractor3/1600/900" alt="Construction Worker" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full border-[3px] border-white flex items-center justify-center cursor-pointer backdrop-blur-md transition-transform hover:scale-105 shadow-xl bg-black/20">
-                    <Play className="w-6 h-6 lg:w-8 lg:h-8 text-white ml-1.5 drop-shadow-md" fill="currentColor" />
-                  </div>
-                </div>
+             <div className="relative aspect-[4/3] lg:aspect-video w-full shadow-lg group select-none overflow-hidden rounded-sm bg-black">
+                <video 
+                  src="/videos/about-video.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
              </div>
           </div>
           
@@ -176,8 +178,8 @@ export default function Home() {
       <section className="px-6 py-20 relative overflow-hidden backdrop-blur-xl bg-white/20">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="order-2 lg:order-1 relative h-[500px] lg:h-[600px] fade-up">
-            <img src="https://picsum.photos/seed/home-team1/800/1000" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[500px] object-cover absolute left-0 top-0 shadow-lg" referrerPolicy="no-referrer" />
-            <img src="https://picsum.photos/seed/home-team2/800/600" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[300px] object-cover absolute right-0 bottom-0 shadow-2xl z-10" referrerPolicy="no-referrer" />
+            <img src="/images/mission/our-mission1.jpg" alt="Team members" className="w-[80%] lg:w-3/4 h-[400px] lg:h-[500px] object-cover absolute left-0 top-0 shadow-lg" referrerPolicy="no-referrer" />
+            <img src="/images/mission/our-mission2.jpg" alt="Team with truck" className="w-[70%] lg:w-2/3 h-[250px] lg:h-[300px] object-cover absolute right-0 bottom-0 shadow-2xl z-10" referrerPolicy="no-referrer" />
           </div>
           <div className="order-1 lg:order-2">
             <SectionHeader 
@@ -274,22 +276,22 @@ export default function Home() {
         <div className="relative">
           {[
             { 
+              title: 'Modern 3-bedroom Estate', 
+              loc: 'Chicago, IL', 
+              tag: 'Luxury Estates', 
+              img: '/images/project-images/3-bedroom/3-bedroom2.jpg' 
+            },
+            { 
+              title: 'Modern Custom Home Construction', 
+              loc: 'Chicago, IL', 
+              tag: 'Custom Homes', 
+              img: '/images/project-images/custom-home/custom1.jpg' 
+            },
+            { 
               title: 'FGIP Legacy Estate', 
               loc: 'Lagos, Nigeria', 
               tag: 'International & Investment Projects', 
-              img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop' 
-            },
-            { 
-              title: 'Contemporary Kitchen Overhaul', 
-              loc: 'Portland, OR', 
-              tag: 'Renovations', 
-              img: 'https://storage.googleapis.com/bpe-chat-attachments-prod/489ca64d-7301-443b-a5d4-4b5fd4e67cd6/image.png' 
-            },
-            { 
-              title: 'Lakefront Revival Estate', 
-              loc: 'Washington, USA', 
-              tag: 'Custom Homes', 
-              img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop' 
+              img: '/images/project-images/fgip/fgip1.jpg' 
             }
           ].map((proj, i) => (
             <div 
@@ -397,13 +399,13 @@ export default function Home() {
           </div>
           <div ref={teamContainerRef} className="flex gap-4 lg:gap-5 px-6 lg:px-auto max-w-7xl mx-auto w-max lg:w-full">
             {[
-              { name: "Remy Okunbena", role: "Managing Director", img: "remy" },
-              { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "mathew" },
-              { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake" },
-              { name: "Arc. Sandra Airunugba", role: "Lead Architect and Project Manager", img: "sandra" }
+              { name: "Remy Okunbena", role: "Managing Director", img: "remy.png" },
+              { name: "Mathew Kalesanwo", role: "VP, Revenue Growth & Business Development", img: "matthew.png" },
+              { name: "Olufolake Olumogba", role: "Director of Project Development & Infrastructure", img: "olufolake.png" },
+              { name: "Arc. Sandra Airunugba", role: "Senior Architect and Supervisory Project Manager", img: "sandra.jpeg" }
             ].map((exec, i) => (
-              <div key={i} className="w-[80vw] sm:w-[240px] lg:w-[230px] xl:w-[250px] aspect-[4/5] relative group shrink-0 rounded-xl overflow-hidden shadow-lg">
-                <img src={`https://picsum.photos/seed/${exec.img}/800/1000`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
+              <div key={i} className="w-[80vw] sm:w-[240px] lg:w-[230px] xl:w-[250px] aspect-[4/5] relative group shrink-0 rounded-xl overflow-hidden shadow-lg border border-brand-primary/10">
+                <img src={`/images/team-images/${exec.img}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" referrerPolicy="no-referrer" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white">
                   <h3 className="text-lg font-heading mb-1">{exec.name}</h3>
                   <p className="text-brand-primary tracking-widest uppercase text-[9px] font-bold leading-tight line-clamp-2">{exec.role}</p>

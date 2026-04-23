@@ -6,7 +6,7 @@ import { ArrowRight, ArrowLeft, X } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const categories = ["All", "Custom Homes", "Luxury Estates", "Renovations", "International & Investment Projects"];
+const categories = ["All", "Custom Homes", "Luxury Estates", "Renovations & Custom Interiors", "International & Investment Projects"];
 
 type Project = {
   id: string;
@@ -22,62 +22,92 @@ type Project = {
 const projects: Project[] = [
   {
     id: "1",
-    title: "Lakefront Revival Estate",
-    location: "Washington, USA",
+    title: "Modern 3-bedroom Estate",
+    location: "Chicago, IL",
+    category: "Luxury Estates",
+    image: "/images/project-images/3-bedroom/3-bedroom2.jpg",
+    images: [
+      "/images/project-images/3-bedroom/3-bedroom2.jpg",
+      "/images/project-images/3-bedroom/3-bedroom1.jpg"
+    ],
+    description: "A comprehensive interior build-out for a spacious 3-bedroom lakefront home designed for family living and frequent gatherings.\n\nThe project included detailed interior finishing, featuring a prominent large stone fireplace in the central living area, an expansive kitchen optimized for heavy daily use, and a custom-designed master suite overlooking the water.\n\nThe execution focused on high-quality construction, the use of durable, premium materials, and delivering a clean, straightforward, and timeless architectural aesthetic."
+  },
+  {
+    id: "7",
+    title: "Modern Custom Home Construction",
+    location: "Chicago, IL",
     category: "Custom Homes",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop",
-    description: "The Harrison family approached the firm with a clear vision: they wanted a new lakefront home with plenty of room for their everyday family life and frequent gatherings.\n\nThe team completed all the interior work for this project. The main features include a prominent, large stone fireplace in the living area, an exceptionally spacious kitchen built precisely for heavy everyday use, and a tranquil master bedroom directly overlooking the water.\n\nThe interior was built exactly to their specifications, focusing heavily on quality construction, durable materials, and a straightforward, timeless design."
+    image: "/images/project-images/custom-home/custom1.jpg",
+    images: [
+      "/images/project-images/custom-home/custom1.jpg",
+      "/images/project-images/custom-home/custom2.jpg",
+      "/images/project-images/custom-home/custom3.jpg"
+    ],
+    description: "A complete custom home build integrating modern architectural design with highly functional, open-concept everyday living spaces.\n\nThe scope involved full-phase construction from site foundation to structural framing and high-end exterior finishing. Large-scale windows were strategically placed to maximize natural light throughout the residence.\n\nThe interior features premium hardwood flooring, custom-built cabinetry, and smart home infrastructure, delivering a cohesive, energy-efficient, and sophisticated living environment."
   },
   {
     id: "2",
-    title: "Modern Spa Sanctuary",
-    location: "California, USA",
-    category: "Renovations",
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&q=80&w=2000",
-    description: "Dr. Evelyn Reed commissioned the team to completely renovate her old, outdated master bathroom, aiming to transform it into a peaceful space where she could relax fully after long hours at work.\n\nEverything from the original cramped bathroom was removed to build a completely new, optimized layout from scratch. The new, airy space features a large freestanding soaking tub placed elegantly in the center, and dual sleek sinks resting against a beautifully tiled accent wall.\n\nAccompanied by warm, new modern lighting, the team delivered an updated, fully functional bathroom space built exactly to her demanding needs."
+    title: "Bathroom Remodels & Designs",
+    location: "USA, Europe, Africa",
+    category: "Renovations & Custom Interiors",
+    image: "/images/project-images/bathrooms/bathroom1.jpg",
+    images: [
+      "/images/project-images/bathrooms/bathroom1.jpg",
+      "/images/project-images/bathrooms/bathroom2.jpg",
+      "/images/project-images/bathrooms/bathroom3.jpg",
+      "/images/project-images/bathrooms/bathroom4.jpg"
+    ],
+    description: "A portfolio of complete teardowns and renovations of outdated master and guest bathrooms, transforming them into optimized, modern spa-like spaces tailored to specific client needs.\n\nThese projects typically require reconfiguring original layouts to maximize airiness and flow. Common signature installations include large freestanding soaking tubs positioned centrally, custom dual-sink vanities integrated with vertically tiled accent walls, and seamless glass walk-in showers.\n\nEach remodel is completed with the installation of warm, modern lighting fixtures and high-end plumbing hardware, ensuring a fully functional and deeply relaxing environment."
   },
   {
     id: "3",
     title: "Greenfield Estate Development",
     location: "Texas, USA",
     category: "Luxury Estates",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/project-images/greenfield/greenfield1.jpg",
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2000&auto=format&fit=crop"
+      "/images/project-images/greenfield/greenfield1.jpg"
     ],
-    description: "Sarah and Mark Sterling enlisted the firm to handle the full-scale construction and development of an expansive new residential estate property on a raw plot of land.\n\nThe entire site development was managed sequentially, including initial land clearing, pouring heavy-duty foundations, and executing the critical structural framing for the main buildings.\n\nThe project required coordinating multiple teams of heavy equipment, sourcing durable, premium building materials, and rigorously managing the construction timeline to get the family safely moved in on schedule. The team focused entirely on solid workmanship and structural integrity from start to finish."
+    description: "Full-scale construction and site development of a new expansive residential estate property on a raw plot of land.\n\nThe scope of work encompassed comprehensive site management, including initial land clearing, earthworks, heavy-duty foundation pouring, and the structural framing of the main residential buildings.\n\nExecution involved the precise coordination of heavy equipment operations, procurement of premium-grade building materials, and rigorous timeline management to ensure solid workmanship and structural integrity across the entire build."
   },
   {
     id: "4",
-    title: "Contemporary Kitchen Overhaul",
-    location: "Portland, OR",
-    category: "Renovations",
-    image: "https://storage.googleapis.com/bpe-chat-attachments-prod/489ca64d-7301-443b-a5d4-4b5fd4e67cd6/image.png",
-    description: "The Martinez family requested a complete, top-to-bottom modernization of their severely outdated, closed-off kitchen space to better suit their love for home cooking and entertaining.\n\nThe team structurally opened up the floor plan and installed a large, gorgeous grey and white granite island to serve as the new heart and centerpiece of the room.\n\nPaired carefully with custom white cabinetry, modern pendant lighting overhead, and a bold dark grey accent wall, the new kitchen now offers both enhanced daily functionality and a cleanly defined, contemporary aesthetic."
+    title: "Modern Kitchen Remodels",
+    location: "USA, Europe, Africa",
+    category: "Renovations & Custom Interiors",
+    image: "/images/project-images/kitchen/kitchen1.jpg",
+    images: [
+      "/images/project-images/kitchen/kitchen1.jpg",
+      "/images/project-images/kitchen/kitchen2.jpg"
+    ],
+    description: "A comprehensive collection of structural kitchen modernizations and redesigns that redefine the heart of the home to match the absolute taste and lifestyle demands of our clients.\n\nOur approach frequently involves tearing down enclosing walls to open up floor plans, allowing for the installation of massive focal-point islands, luxury stone countertops, and high-end integrated appliances. Whether the aesthetic goal is a sleek contemporary finish with dark grey accents or a rustic modern charm featuring exposed ceiling beams and wood-paneled fixtures, the core focus remains aligned.\n\nBy seamlessly pairing custom cabinetry with strategic layered lighting, these overhauls bridge tactile textures with modern convenience to deliver spaces built inherently for entertaining and everyday living."
   },
   {
-    id: "5",
-    title: "Rustic Modern Kitchen Remodel",
-    location: "Austin, TX",
-    category: "Renovations",
-    image: "https://storage.googleapis.com/bpe-chat-attachments-prod/7fd47da1-e2ee-4dd1-b0db-6e6b5278c52d/image.png",
-    description: "James and Clara Bow sought to infuse significant character, warmth, and life tightly into their otherwise standard suburban kitchen.\n\nThe team introduced warm, exposed wooden beams across the ceiling and constructed a large custom wood-paneled island that together bring immediate, tactile texture to the space.\n\nComplemented dynamically by crisp white cabinetry and practical open shelving, this remodel perfectly balances a rustic, inviting farmhouse charm with modern, everyday cooking convenience."
+    id: "8",
+    title: "Modern Interior",
+    location: "Various Locations",
+    category: "Renovations & Custom Interiors",
+    image: "/images/project-images/interior/interior1.jpg",
+    images: [
+      "/images/project-images/interior/interior1.jpg",
+      "/images/project-images/interior/interior2.jpg",
+      "/images/project-images/interior/interior3.jpg",
+      "/images/project-images/interior/interior4.jpg",
+      "/images/project-images/interior/interior5.jpg"
+    ],
+    description: "Curated interior decorating services focusing on clean lines, minimalist layouts, and sophisticated monochromatic or highly contrasted color palettes.\n\nOur modern decor projects emphasize utilizing negative space, bringing in natural light, and selecting low-profile, high-impact furniture pieces that serve both function and form. We integrate cutting-edge materials like polished concrete, glass, and brushed steel alongside plush, comfortable textiles to ensure the space never feels clinical.\n\nThe result is a highly tailored, uncluttered living environment that looks visually striking while remaining exceptionally livable for the modern homeowner."
   },
   {
     id: "6",
     title: "FGIP Legacy Estate",
     location: "Lagos, Nigeria",
     category: "International & Investment Projects",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
+    image: "/images/project-images/fgip/fgip1.jpg",
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1613490908653-b404abce6744?q=80&w=2000&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop"
+      "/images/project-images/fgip/fgip1.jpg"
     ],
     comingSoon: true,
-    description: "Welcome to FGIP Legacy Estate, a premier new development situated right in the vibrant heart of Lagos, Nigeria. This ambitious endeavor aims to bring world-class infrastructure, high-tech security, and residential luxury to one of Africa's most dynamic cities.\n\nDesigned specifically with long-term value in mind, this property stands as a highly lucrative, investment-worthy project for both domestic standard bearers and international portfolio investors. Modern architectural standards are merged with rich, local cultural aesthetics to ensure this estate stands as a genuine landmark.\n\nWith expansive green spaces, advanced security systems, and high-end community amenities planned, the estate perfectly represents the future of secure, luxury living. Dedicated local and international teams are rigorously progressing on site, with full completion slated for 2026."
+    description: "A premier luxury estate development located in the heart of Lagos, Nigeria, delivering world-class infrastructure and high-tech secure residential living.\n\nThe project is designed with a focus on long-term investment value, merging modern architectural standards with optimized commercial real estate frameworks. It serves both domestic homebuyers and international portfolio investors.\n\nThe development includes expansive green spaces, advanced integrated security systems, and premium community amenities. Site surveying, topographic engineering, and structural development are actively progressing toward a slated 2026 completion."
   }
 ];
 
@@ -167,10 +197,10 @@ export default function Portfolio() {
       {featuredProject && (
         <div className="mb-16 portfolio-fade-up relative z-10">
           <div 
-            className="group cursor-pointer block relative overflow-hidden rounded-3xl shadow-xl bg-white/40 backdrop-blur-md border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1"
+            className="group cursor-pointer block relative overflow-hidden transition-all duration-500 hover:-translate-y-1"
             onClick={() => openProject(featuredProject)}
           >
-            <div className="overflow-hidden relative m-4 rounded-2xl shadow-inner border border-white/20">
+            <div className="overflow-hidden relative rounded-2xl mb-4">
               <img 
                 src={featuredProject.image} 
                 alt={featuredProject.title} 
@@ -178,24 +208,24 @@ export default function Portfolio() {
                 referrerPolicy="no-referrer" 
               />
               {featuredProject.comingSoon && (
-                <div className="absolute top-6 right-6 bg-brand-dark/90 backdrop-blur-sm text-white px-4 py-2 font-bold tracking-widest text-sm uppercase shadow-xl rounded-lg z-10 pointer-events-none">
+                <div className="absolute top-6 right-6 bg-brand-dark/90 text-white px-4 py-2 font-bold tracking-widest text-sm uppercase rounded-lg z-10 pointer-events-none">
                   Coming soon in 2026
                 </div>
               )}
             </div>
-            <div className="bg-brand-primary p-6 md:p-8 flex justify-between items-center transition-colors group-hover:bg-brand-dark mx-4 mb-4 rounded-2xl text-white shadow-lg border border-brand-primary/50">
+            <div className="bg-transparent flex justify-between items-start transition-colors px-2">
               <div className="flex-1 pr-6">
-                <h2 className="text-3xl font-medium mb-1 drop-shadow-sm font-heading">{featuredProject.title}</h2>
-                <div className="flex items-center gap-2 mb-3 text-white/90 text-sm font-medium">
-                  <span className="border border-white/40 bg-white/10 backdrop-blur-sm rounded-full px-2 py-0.5 text-xs">{featuredProject.category}</span>
+                <h2 className="text-3xl font-medium mb-2 text-brand-dark group-hover:text-brand-primary transition-colors font-heading">{featuredProject.title}</h2>
+                <div className="flex items-center gap-2 mb-3 text-gray-600 text-sm font-medium">
+                  <span className="text-brand-primary">{featuredProject.category}</span>
                   <span>•</span>
                   <span>{featuredProject.location}</span>
                 </div>
-                <p className="text-white/90 text-base line-clamp-2 max-w-3xl leading-relaxed">
+                <p className="text-gray-700 text-base line-clamp-2 max-w-3xl leading-relaxed">
                   {featuredProject.description}
                 </p>
               </div>
-              <div className="border border-white rounded-full p-4 hover:bg-white text-white group-hover:text-brand-dark bg-transparent transition-all shrink-0">
+              <div className="text-brand-primary bg-brand-primary/10 rounded-full p-4 group-hover:bg-brand-primary group-hover:text-white transition-all shrink-0">
                 <ArrowRight className="w-6 h-6" />
               </div>
             </div>
@@ -207,35 +237,32 @@ export default function Portfolio() {
         {remainingProjects.map(project => (
           <div 
             key={project.id} 
-            className="portfolio-fade-up group cursor-pointer bg-white/40 backdrop-blur-md p-4 rounded-3xl border border-white/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+            className="portfolio-fade-up group cursor-pointer transition-all duration-500 hover:-translate-y-1"
             onClick={() => openProject(project)}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-inner mb-2">
+            <div className="relative overflow-hidden rounded-2xl mb-4">
               <img src={project.image} alt={project.title} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
               <div className="absolute bottom-0 right-0 bg-brand-primary p-4 text-white group-hover:bg-brand-dark transition-colors z-20 rounded-tl-2xl">
                 <ArrowRight className="w-6 h-6" />
               </div>
               {project.comingSoon && (
-                <div className="absolute top-4 right-4 bg-brand-dark/90 backdrop-blur-sm text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase shadow-md rounded-lg z-20 pointer-events-none">
+                <div className="absolute top-4 right-4 bg-brand-dark/90 text-white px-3 py-1 font-bold tracking-widest text-[10px] uppercase rounded-lg z-20 pointer-events-none">
                   Coming soon in 2026
                 </div>
               )}
             </div>
-            <div className="py-4 px-2">
+            <div className="py-2 px-1">
               <h3 className="text-2xl font-medium text-brand-dark mb-2 group-hover:text-brand-primary transition-colors">{project.title}</h3>
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-xs text-gray-700 border border-brand-primary/20 bg-white/50 backdrop-blur-sm rounded-full px-2 py-0.5 inline-block font-medium shadow-sm">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-xs text-brand-primary font-bold uppercase tracking-wider">
                   {project.category}
                 </span>
                 <span className="text-gray-400 text-xs">•</span>
-                <p className="text-gray-700 font-medium text-sm">{project.location}</p>
+                <p className="text-gray-600 font-medium text-sm">{project.location}</p>
               </div>
-              <p className="text-gray-800 text-base mb-4 line-clamp-3 leading-relaxed pr-2 font-medium">
+              <p className="text-gray-700 text-base mb-4 line-clamp-3 leading-relaxed pr-2">
                 {project.description}
               </p>
-              <div className="text-brand-primary text-sm font-bold flex items-center gap-1 group-hover:underline uppercase tracking-wide">
-                View Details <ArrowRight className="w-4 h-4" />
-              </div>
             </div>
           </div>
         ))}

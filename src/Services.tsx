@@ -1,7 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Highlight, Button } from './components/ui';
+
+const ImageCarousel = ({ images }: { images: string[] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [images]);
+
+  return (
+    <div className="relative w-full aspect-[4/3] lg:aspect-[16/9] rounded-sm sticky top-32 overflow-hidden bg-gray-100 shadow-md">
+      {images.map((src, i) => (
+        <img 
+          key={i}
+          src={src} 
+          alt={`Slide ${i + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+          referrerPolicy="no-referrer"
+        />
+      ))}
+    </div>
+  );
+};
 
 export default function Services() {
   useEffect(() => {
@@ -48,7 +73,11 @@ export default function Services() {
           <Button onClick={() => { document.getElementById('contact-form-section')?.scrollIntoView({ behavior: 'smooth' }); }}>Get Started</Button>
         </div>
       </div>
-      <img src={img} alt={title} className="w-full aspect-[4/3] lg:aspect-[16/9] object-cover rounded-sm sticky top-32" referrerPolicy="no-referrer" />
+      {Array.isArray(img) ? (
+        <ImageCarousel images={img} />
+      ) : (
+        <img src={img} alt={title} className="w-full aspect-[4/3] lg:aspect-[16/9] object-cover rounded-sm sticky top-32 shadow-md" referrerPolicy="no-referrer" />
+      )}
     </div>
   );
 
@@ -71,7 +100,7 @@ export default function Services() {
         <p>We solve problems others can't or won't with creativity. We build <Highlight>lasting relationships</Highlight> with candor. And we specialize in details that reflect the modern lifestyle and market demands, both in the US and internationally.</p>
       </div>
 
-      <img src="https://picsum.photos/seed/ribbon-cutting/1200/600" alt="Ribbon cutting" className="w-full aspect-[21/9] object-cover rounded-sm mb-12 services-fade-up" referrerPolicy="no-referrer" />
+      <img src="/images/services/header.jpg" alt="Ribbon cutting" className="w-full aspect-[21/9] object-cover rounded-sm mb-12 services-fade-up" referrerPolicy="no-referrer" />
 
       <ServiceSection 
         id="custom-homes"
@@ -86,7 +115,7 @@ export default function Services() {
           "Interior finishing",
           "Landscaping integration"
         ]}
-        img="https://picsum.photos/seed/custom-home/1200/800"
+        img="/images/project-images/custom-home/custom2.jpg"
       />
 
       <ServiceSection 
@@ -101,7 +130,10 @@ export default function Services() {
           "Structural upgrades",
           "Interior redesign and exterior modernization"
         ]}
-        img="https://picsum.photos/seed/renovation/1200/800"
+        img={[
+          "/images/project-images/bathrooms/bathroom3.jpg",
+          "/images/project-images/interior/interior2.jpg"
+        ]}
       />
 
       <ServiceSection 
@@ -116,7 +148,11 @@ export default function Services() {
           "Project management",
           "Development consulting and procurement"
         ]}
-        img="https://picsum.photos/seed/development/1200/800"
+        img={[
+          "/images/services/building1.jpg",
+          "/images/services/building2.jpg",
+          "/images/services/building3.jpg"
+        ]}
       />
 
       <ServiceSection 
@@ -131,7 +167,7 @@ export default function Services() {
           "Kitchen fixtures",
           "Bathroom installations and interior finishing materials"
         ]}
-        img="https://picsum.photos/seed/materials/1200/800"
+        img="/images/services/materials.jpg"
       />
 
       {/* Value Engineering */}
@@ -145,8 +181,8 @@ export default function Services() {
           We join the customer's journey, take on their goals, guide them through the design phase and deliver a building that will best <Highlight>accomplish those goals.</Highlight>
         </h3>
         <div className="relative h-[600px] mt-12 bg-white/30 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-xl">
-          <img src="https://picsum.photos/seed/ve-crane/800/1000" alt="Workers with crane" className="w-2/3 h-[450px] object-cover rounded-xl absolute right-8 top-8" referrerPolicy="no-referrer" />
-          <img src="https://picsum.photos/seed/ve-team/600/400" alt="Team photo" className="w-2/3 h-[300px] object-cover rounded-xl absolute left-8 bottom-8 border-8 border-white/40 shadow-2xl backdrop-blur-sm" referrerPolicy="no-referrer" />
+          <img src="/images/mission/our-mission1.jpg" alt="Workers with crane" className="w-2/3 h-[450px] object-cover rounded-xl absolute right-8 top-8" referrerPolicy="no-referrer" />
+          <img src="/images/mission/our-mission2.jpg" alt="Team photo" className="w-2/3 h-[300px] object-cover rounded-xl absolute left-8 bottom-8 border-8 border-white/40 shadow-2xl backdrop-blur-sm" referrerPolicy="no-referrer" />
         </div>
       </div>
 
